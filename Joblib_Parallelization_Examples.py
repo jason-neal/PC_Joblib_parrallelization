@@ -69,12 +69,12 @@ def test_no_reuse():
         n_iter += 1
 
 
-# In[ ]:
+# In[210]:
 
 get_ipython().magic('timeit test_reuse()')
 
 
-# In[ ]:
+# In[211]:
 
 get_ipython().magic('timeit test_no_reuse()')
 
@@ -85,7 +85,7 @@ get_ipython().magic('timeit test_no_reuse()')
 # The generator only creates one value at a time and then when it has used that value it forgets about it. Thus saving memory. As a result they can be used for iteration but only once.
 # You create a generator by using normal brackets "()" instead of square brackets "[]".
 
-# In[ ]:
+# In[212]:
 
 List = [x ** 2 for x in range(10) if (x%3) is 0]
 print(List)
@@ -93,7 +93,7 @@ for val in List:
     print(val)
 
 
-# In[ ]:
+# In[213]:
 
 gen = (x ** 2 for x in range(10) if (x%3) is 0)
 print(gen)
@@ -101,7 +101,7 @@ for val in gen:
     print(val)
 
 
-# In[ ]:
+# In[214]:
 
 print("Another-iteration") 
 print(List)
@@ -126,7 +126,7 @@ for val in gen:
 # 
 # ### Warning nested parallel processes are probably not a good idea. 
 
-# In[ ]:
+# In[215]:
 
 #1/2 Code 1/2 Psudocode for many file example:
 filenames = ["file1.txt", "file2.txt", ...., "fileN.txt"]
@@ -178,26 +178,210 @@ Parallel(n_jobs=2)(delayed(file_processing)(fname, *args) for fname in filenames
 
 
 # # Convolution Example
+# Convolution without loss of information from interpolation because we don't interpolate to equidistant wavelenght points. 
+# 
+# Adapted from code from Pedro Figueira
+
+# First off define some functions needed
+
+# In[231]:
+
+def wav_selector(wav, flux, wav_min, wav_max):
+    """
+    function that returns wavelength and flux withn a giving range
+    """    
+    wav_sel = np.array([value for value in wav if(wav_min < value < wav_max)], dtype="float64")
+    flux_sel = np.array([value[1] for value in zip(wav,flux) if(wav_min < value[0] < wav_max)], dtype="float64")
+    
+    return [wav_sel, flux_sel]
+
+
+def unitary_Gauss(x, center, FWHM):
+    """
+    Gaussian_function of area=1
+
+    p[0] = A;
+    p[1] = mean;
+    p[2] = FWHM;
+    """
+    
+    sigma = np.abs(FWHM) /( 2 * np.sqrt(2 * np.log(2)) );
+    Amp = 1.0 / (sigma*np.sqrt(2*np.pi))
+    tau = -((x - center)**2) / (2*(sigma**2))
+    result = Amp * np.exp( tau );
+    
+    return result
+
+def chip_selector(wav, flux, chip):
+    chip = str(chip)
+    if(chip in ["ALL", "all", "","0"]):
+        chipmin = float(hdr1["HIERARCH ESO INS WLEN STRT1"])  # Wavelength start on detector [nm]
+        chipmax = float(hdr1["HIERARCH ESO INS WLEN END4"])   # Wavelength end on detector [nm]
+        #return [wav, flux]
+    elif(chip == "1"):
+        chipmin = float(hdr1["HIERARCH ESO INS WLEN STRT1"])  # Wavelength start on detector [nm]
+        chipmax = float(hdr1["HIERARCH ESO INS WLEN END1"])   # Wavelength end on detector [nm]
+    elif(chip == "2"):
+        chipmin = float(hdr1["HIERARCH ESO INS WLEN STRT2"])  # Wavelength start on detector [nm]
+        chipmax = float(hdr1["HIERARCH ESO INS WLEN END2"])   # Wavelength end on detector [nm]
+    elif(chip == "3"):   
+        chipmin = float(hdr1["HIERARCH ESO INS WLEN STRT3"])  # Wavelength start on detector [nm]
+        chipmax = float(hdr1["HIERARCH ESO INS WLEN END3"])   # Wavelength end on detector [nm]
+    elif(chip == "4"):   
+        chipmin = float(hdr1["HIERARCH ESO INS WLEN STRT4"])  # Wavelength start on detector [nm]
+        chipmax = float(hdr1["HIERARCH ESO INS WLEN END4"])   # Wavelength end on detector [nm]
+    elif(chip == "Joblib_small"):   
+        chipmin = float(2118)  # Wavelength start on detector [nm]
+        chipmax = float(2119)  # Wavelength end on detector [nm]
+    elif(chip == "Joblib_large"):   
+        chipmin = float(2149)  # Wavelength start on detector [nm]
+        chipmax = float(2157)  # Wavelength end on detector [nm]
+    else:
+        print("Unrecognized chip tag.")
+        exit()
+    
+    #select values form the chip  
+    wav_chip, flux_chip = wav_selector(wav, flux, chipmin, chipmax)
+    
+    return [wav_chip, flux_chip]
+
+
+
+# Serial version of convolution
+# The computationally heavy part is the for loop over each wavelenght value
+
+# In[232]:
+
+
+def convolution_serial(wav, flux, chip, R, FWHM_lim=5.0, plot=True):
+    """Convolution code adapted from pedros code"""
+    
+    wav_chip, flux_chip = chip_selector(wav, flux, chip)
+    #we need to calculate the FWHM at this value in order to set the starting point for the convolution
+ 
+    FWHM_min = wav_chip[0]/R    #FWHM at the extremes of vector
+    FWHM_max = wav_chip[-1]/R       
+    
+    
+    #wide wavelength bin for the resolution_convolution
+    wav_extended, flux_extended = wav_selector(wav, flux, wav_chip[0]-FWHM_lim*FWHM_min, wav_chip[-1]+FWHM_lim*FWHM_max) 
+    wav_extended = np.array(wav_extended, dtype="float64")
+    flux_extended = np.array(flux_extended, dtype="float64")
+    
+    print("Starting the Resolution convolution...")
+    
+    flux_conv_res = []
+    counter = 0    
+    for wav in wav_chip:
+        # select all values such that they are within the FWHM limits
+        FWHM = wav/R
+        #print("FWHM of {0} calculated for wavelength {1}".format(FWHM, wav))
+        indexes = [ i for i in range(len(wav_extended)) if ((wav - FWHM_lim*FWHM) < wav_extended[i] < (wav + FWHM_lim*FWHM))]
+        flux_2convolve = flux_extended[indexes[0]:indexes[-1]+1]
+        IP = unitary_Gauss(wav_extended[indexes[0]:indexes[-1]+1], wav, FWHM)
+        flux_conv_res.append(np.sum(IP*flux_2convolve))
+        if(len(flux_conv_res)%(len(wav_chip)//100 ) == 0):
+            counter = counter+1
+            print("Resolution Convolution at {}%%...".format(counter))
+    flux_conv_res = np.array(flux_conv_res, dtype="float64")
+    print("Done.\n")
+    
+    if(plot):
+        fig=plt.figure(1)
+        plt.xlabel(r"wavelength [ $\mu$m ])")
+        plt.ylabel(r"flux [counts] ")
+        plt.plot(wav_chip, flux_chip/np.max(flux_chip), color ='k', linestyle="-", label="Original spectra")
+        plt.plot(wav_chip, flux_conv_res/np.max(flux_conv_res), color ='b', linestyle="-", label="Spectrum observed at and R=%d ." % (R))
+        plt.legend(loc='best')
+        plt.show() 
+    return wav_chip, flux_conv_res
+
+
+# In[ ]:
+
+Parallel version of convolution
+
+
+# In[233]:
+
+
+def convolution_parallel(wav, flux, chip, R, FWHM_lim=5.0, plot=True):
+    """Convolution code adapted from pedros code"""
+    
+    wav_chip, flux_chip = chip_selector(wav, flux, chip)
+    #we need to calculate the FWHM at this value in order to set the starting point for the convolution
+ 
+    FWHM_min = wav_chip[0]/R    #FWHM at the extremes of vector
+    FWHM_max = wav_chip[-1]/R       
+    
+    
+    #wide wavelength bin for the resolution_convolution
+    wav_extended, flux_extended = wav_selector(wav, flux, wav_chip[0]-FWHM_lim*FWHM_min, wav_chip[-1]+FWHM_lim*FWHM_max) 
+    wav_extended = np.array(wav_extended, dtype="float64")
+    flux_extended = np.array(flux_extended, dtype="float64")
+    
+    print("Starting the Resolution convolution...")
+    
+    flux_conv_res = []
+    counter = 0    
+    for wav in wav_chip:
+        # select all values such that they are within the FWHM limits
+        FWHM = wav/R
+        #print("FWHM of {0} calculated for wavelength {1}".format(FWHM, wav))
+        indexes = [ i for i in range(len(wav_extended)) if ((wav - FWHM_lim*FWHM) < wav_extended[i] < (wav + FWHM_lim*FWHM))]
+        flux_2convolve = flux_extended[indexes[0]:indexes[-1]+1]
+        IP = unitary_Gauss(wav_extended[indexes[0]:indexes[-1]+1], wav, FWHM)
+        flux_conv_res.append(np.sum(IP*flux_2convolve))
+        if(len(flux_conv_res)%(len(wav_chip)//100 ) == 0):
+            counter = counter+1
+            print("Resolution Convolution at {}%%...".format(counter))
+    flux_conv_res = np.array(flux_conv_res, dtype="float64")
+    print("Done.\n")
+    
+    if(plot):
+        fig=plt.figure(1)
+        plt.xlabel(r"wavelength [ $\mu$m ])")
+        plt.ylabel(r"flux [counts] ")
+        plt.plot(wav_chip, flux_chip/np.max(flux_chip), color ='k', linestyle="-", label="Original spectra")
+        plt.plot(wav_chip, flux_conv_res/np.max(flux_conv_res), color ='b', linestyle="-", label="Spectrum observed at and R=%d ." % (R))
+        plt.legend(loc='best')
+        plt.show() 
+    return wav_chip, flux_conv_res
+
+
+# In[234]:
+
+# Load data
+wl, flux = np.loadtxt("Joblib_tapas.txt")  # 2117-2120 nm
+#wl, flux = np.loadtxt("Joblib_tapas.txt")  # 2145-2160 nm
+
+
+# In[235]:
+
+import time
+import datetime
+start = time.time()
+print("start time", start)
+print("start time", datetime.datetime.now().time())
+#convolution_serial(wav, flux, chip, R, FWHM_lim=5.0, plot=True)
+# "Joblib_small"  # "Joblib_large"
+x, y = convolution_serial(wl, flux, "Joblib_small", 50000, FWHM_lim=5.0, plot=True)
+  
+done = time.time()
+print("end time", datetime.datetime.now().time())
+elapsed = done - start
+print("Convolution time = ", elapsed)
+
+
+# # Logging
+# Traceback example, note how the line of the error is indicated as well as the values of the parameter passed to the function that triggered the exception, even though the traceback happens in the child process.
 # 
 
-# In[ ]:
+# In[219]:
 
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
+from heapq import nlargest
+from joblib import Parallel, delayed
+Parallel(n_jobs=3)(delayed(nlargest)(2, n) for n in (range(4), 'abcde', 3)) 
 
 
 # # Joblibs Other tools
