@@ -1,19 +1,16 @@
 
 # coding: utf-8
 
-# In[ ]:
+# # Embarisingly Parallel for loops using Joblib
+# Example from documentation
 
-# Embarisingly Parallel for loops using Joblib
-Example from documentation
-
-
-# In[102]:
+# In[1]:
 
 from math import sqrt
 [sqrt(i ** 2) for i in range(10)]
 
 
-# In[101]:
+# In[2]:
 
 from joblib import Parallel, delayed
 Parallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(10))
@@ -22,7 +19,7 @@ Parallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(10))
 # The progress meter: the higher the value of verbose, the more messages:
 # If verbose > 50 then message a for every task is returned.
 
-# In[97]:
+# In[3]:
 
 from time import sleep
 from joblib import Parallel, delayed
@@ -30,12 +27,12 @@ from joblib import Parallel, delayed
 r = Parallel(n_jobs=1, verbose=1)(delayed(sleep)(.1) for _ in range(100)) 
 
 
-# In[98]:
+# In[4]:
 
 r = Parallel(n_jobs=2, verbose=5)(delayed(sleep)(.1) for _ in range(100)) 
 
 
-# In[99]:
+# In[5]:
 
 r = Parallel(n_jobs=-1, verbose=10)(delayed(sleep)(.1) for _ in range(100)) 
 
@@ -44,7 +41,7 @@ r = Parallel(n_jobs=-1, verbose=10)(delayed(sleep)(.1) for _ in range(100))
 
 # ## Reusing a pool of workers
 
-# In[208]:
+# In[6]:
 
 def test_reuse():
     """Test Reusing a pool of workers """
@@ -57,7 +54,7 @@ def test_reuse():
             n_iter += 1
 
 
-# In[209]:
+# In[7]:
 
 def test_no_reuse():
     """Test Showing Parallel overhead by not Reusing a pool of workers"""
@@ -69,14 +66,14 @@ def test_no_reuse():
         n_iter += 1
 
 
-# In[210]:
+# In[8]:
 
-get_ipython().magic('timeit test_reuse()')
+get_ipython().magic(u'timeit test_reuse()')
 
 
-# In[211]:
+# In[9]:
 
-get_ipython().magic('timeit test_no_reuse()')
+get_ipython().magic(u'timeit test_no_reuse()')
 
 
 # # Generators:
@@ -85,7 +82,7 @@ get_ipython().magic('timeit test_no_reuse()')
 # The generator only creates one value at a time and then when it has used that value it forgets about it. Thus saving memory. As a result they can be used for iteration but only once.
 # You create a generator by using normal brackets "()" instead of square brackets "[]".
 
-# In[212]:
+# In[12]:
 
 List = [x ** 2 for x in range(10) if (x%3) is 0]
 print(List)
@@ -93,7 +90,7 @@ for val in List:
     print(val)
 
 
-# In[213]:
+# In[13]:
 
 gen = (x ** 2 for x in range(10) if (x%3) is 0)
 print(gen)
@@ -101,7 +98,7 @@ for val in gen:
     print(val)
 
 
-# In[214]:
+# In[14]:
 
 print("Another-iteration") 
 print(List)
@@ -126,7 +123,7 @@ for val in gen:
 # 
 # ### Warning nested parallel processes are probably not a good idea. 
 
-# In[215]:
+# In[ ]:
 
 #1/2 Code 1/2 Psudocode for many file example:
 filenames = ["file1.txt", "file2.txt", ...., "fileN.txt"]
@@ -184,7 +181,9 @@ Parallel(n_jobs=2)(delayed(file_processing)(fname, *args) for fname in filenames
 
 # First off define some functions needed
 
-# In[231]:
+# In[21]:
+
+import matplotlib.pyplot as plt
 
 def wav_selector(wav, flux, wav_min, wav_max):
     """
@@ -247,10 +246,10 @@ def chip_selector(wav, flux, chip):
 
 
 
-# Serial version of convolution
+# ### Serial version of convolution
 # The computationally heavy part is the for loop over each wavelenght value
 
-# In[232]:
+# In[22]:
 
 
 def convolution_serial(wav, flux, chip, R, FWHM_lim=5.0, plot=True):
@@ -297,78 +296,82 @@ def convolution_serial(wav, flux, chip, R, FWHM_lim=5.0, plot=True):
     return wav_chip, flux_conv_res
 
 
-# In[ ]:
+# ### Parallel version of convolution
 
-Parallel version of convolution
+# In[23]:
 
-
-# In[233]:
-
-
-def convolution_parallel(wav, flux, chip, R, FWHM_lim=5.0, plot=True):
+# Function around bottleneck
+def convolve(wav, R, wav_extended, flux_extended, FWHM_lim):
+        # select all values such that they are within the FWHM limits
+        FWHM = wav/R
+        indexes = [ i for i in range(len(wav_extended)) if ((wav - FWHM_lim*FWHM) < wav_extended[i] < (wav + FWHM_lim*FWHM))]
+        flux_2convolve = flux_extended[indexes[0]:indexes[-1]+1]
+        IP = unitary_Gauss(wav_extended[indexes[0]:indexes[-1]+1], wav, FWHM)
+        val = np.sum(IP*flux_2convolve) 
+        unitary_val = np.sum(IP*np.ones_like(flux_2convolve))  # Effect of convolution onUnitary. For changing number of points
+        return val/unitary_val
+    
+def convolution_parallel(wav, flux, chip, R, FWHM_lim=5.0, n_jobs=-1, verbose=5):
     """Convolution code adapted from pedros code"""
     
     wav_chip, flux_chip = chip_selector(wav, flux, chip)
     #we need to calculate the FWHM at this value in order to set the starting point for the convolution
- 
+    
+    #print(wav_chip)
+    #print(flux_chip)
     FWHM_min = wav_chip[0]/R    #FWHM at the extremes of vector
     FWHM_max = wav_chip[-1]/R       
-    
     
     #wide wavelength bin for the resolution_convolution
     wav_extended, flux_extended = wav_selector(wav, flux, wav_chip[0]-FWHM_lim*FWHM_min, wav_chip[-1]+FWHM_lim*FWHM_max) 
     wav_extended = np.array(wav_extended, dtype="float64")
     flux_extended = np.array(flux_extended, dtype="float64")
     
-    print("Starting the Resolution convolution...")
+    print("Starting the Parallel Resolution convolution...")
     
-    flux_conv_res = []
-    counter = 0    
-    for wav in wav_chip:
-        # select all values such that they are within the FWHM limits
-        FWHM = wav/R
-        #print("FWHM of {0} calculated for wavelength {1}".format(FWHM, wav))
-        indexes = [ i for i in range(len(wav_extended)) if ((wav - FWHM_lim*FWHM) < wav_extended[i] < (wav + FWHM_lim*FWHM))]
-        flux_2convolve = flux_extended[indexes[0]:indexes[-1]+1]
-        IP = unitary_Gauss(wav_extended[indexes[0]:indexes[-1]+1], wav, FWHM)
-        flux_conv_res.append(np.sum(IP*flux_2convolve))
-        if(len(flux_conv_res)%(len(wav_chip)//100 ) == 0):
-            counter = counter+1
-            print("Resolution Convolution at {}%%...".format(counter))
-    flux_conv_res = np.array(flux_conv_res, dtype="float64")
+    parallel_result = Parallel(n_jobs=n_jobs, verbose=verbose)(delayed(convolve)(wav,R,wav_extended, flux_extended,FWHM_lim) for wav in wav_chip)
+    flux_conv_res = np.array(parallel_result, dtype="float64")
     print("Done.\n")
     
-    if(plot):
-        fig=plt.figure(1)
-        plt.xlabel(r"wavelength [ $\mu$m ])")
-        plt.ylabel(r"flux [counts] ")
-        plt.plot(wav_chip, flux_chip/np.max(flux_chip), color ='k', linestyle="-", label="Original spectra")
-        plt.plot(wav_chip, flux_conv_res/np.max(flux_conv_res), color ='b', linestyle="-", label="Spectrum observed at and R=%d ." % (R))
-        plt.legend(loc='best')
-        plt.show() 
-    return wav_chip, flux_conv_res
+
+    return wav_chip, flux_conv_res 
 
 
-# In[234]:
+
+# In[27]:
 
 # Load data
-wl, flux = np.loadtxt("Joblib_tapas.txt")  # 2117-2120 nm
-#wl, flux = np.loadtxt("Joblib_tapas.txt")  # 2145-2160 nm
+import numpy as np
+#wl, flux = np.loadtxt("Joblib_tapas.txt")  # 2117-2120 nm
+wl, flux = np.loadtxt("Joblib_tapas_large.txt")  # 2145-2160 nm
 
 
-# In[235]:
+# Time a serial convolution
+
+# In[28]:
 
 import time
 import datetime
 start = time.time()
-print("start time", start)
-print("start time", datetime.datetime.now().time())
-#convolution_serial(wav, flux, chip, R, FWHM_lim=5.0, plot=True)
+
 # "Joblib_small"  # "Joblib_large"
-x, y = convolution_serial(wl, flux, "Joblib_small", 50000, FWHM_lim=5.0, plot=True)
+x, y = convolution_serial(wl, flux, "Joblib_large", 50000, FWHM_lim=5.0, plot=False)
   
 done = time.time()
-print("end time", datetime.datetime.now().time())
+elapsed = done - start
+print("Convolution time = ", elapsed)
+
+
+# Time a parallel convolution
+
+# In[29]:
+
+start = time.time()
+# "Joblib_small", "Joblib_large"
+
+x_par, y_par = convolution_parallel(wl, flux, "Joblib_large", 50000, FWHM_lim=5.0)
+  
+done = time.time()
 elapsed = done - start
 print("Convolution time = ", elapsed)
 
@@ -377,7 +380,7 @@ print("Convolution time = ", elapsed)
 # Traceback example, note how the line of the error is indicated as well as the values of the parameter passed to the function that triggered the exception, even though the traceback happens in the child process.
 # 
 
-# In[219]:
+# In[31]:
 
 from heapq import nlargest
 from joblib import Parallel, delayed
@@ -391,34 +394,34 @@ Parallel(n_jobs=3)(delayed(nlargest)(2, n) for n in (range(4), 'abcde', 3))
 # 
 # When it is called with the same parameters again it jsut returns the result without recomputation.
 
-# In[ ]:
+# In[32]:
 
 from joblib import Memory
 mem = Memory(cachedir='/tmp/joblib')
 import numpy as np
-a = np.vander(np.arange(10001)).astype(np.float)
+a = np.vander(np.arange(101)).astype(np.float)
 b = np.vander(np.arange(5)).astype(np.float)
 square = mem.cache(np.square)
 
 
-# In[ ]:
+# In[33]:
 
-get_ipython().magic('time c = square(a)')
-
-
-# In[ ]:
-
-get_ipython().magic('time d = square(b)')
+c = square(a) 
 
 
-# In[ ]:
+# In[34]:
 
-get_ipython().magic('time e = square(a) # Does not recomute square(a)')
+d = square(b)
 
 
-# In[ ]:
+# In[35]:
 
-get_ipython().magic('time f = square(b) # Does not recomute square(b)')
+e = square(a) # Does not recomute square(a)
+
+
+# In[36]:
+
+f = square(b) # Does not recomute square(b)
 
 
 # Timing these calls to square shows that the second call of the function with the same inputs give a much faster result.
@@ -429,45 +432,35 @@ get_ipython().magic('time f = square(b) # Does not recomute square(b)')
 # Filename is important here, .pkl will make a pickle like persistance
 # where as .mmap with make a memory map location for parallel process shared access.
 
-# In[ ]:
+# In[41]:
 
 from tempfile import mkdtemp
 savedir = mkdtemp()
 import os
-filename = os.path.join(savedir, 'test.pkl')
-#filename = os.path.join(savedir, 'test.mmap')
+#filename = os.path.join(savedir, 'test.pkl')      # Pickle version  
+filename = os.path.join(savedir, 'test.mmap')      # Memmap version
 
 
-# In[ ]:
+# In[42]:
 
 #Then we create an object to be persisted:
 import numpy as np
-to_persist = [('a', [1, 2, 3]), ('b', np.arange(10))]
-#to_persist = np.ones(int(1e6))
+#to_persist = [('a', [1, 2, 3]), ('b', np.arange(10))]
+to_persist = np.ones(int(1e6))
 
 
-# In[ ]:
+# In[43]:
 
 #which we save into savedir:
 import joblib
 joblib.dump(to_persist, filename)  
 
 
-# In[ ]:
+# In[44]:
 
 # We can then load the object from the file:
-joblib.load(filename)
-#joblib.load(filename, mmap_mode='r+')
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
+#joblib.load(filename)
+pointer = joblib.load(filename, mmap_mode='r+')
 
 
 # In[ ]:

@@ -11746,26 +11746,22 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Embarisingly Parallel for loops using Joblib</span>
-<span class="n">Example</span> <span class="kn">from</span> <span class="nn">documentation</span>
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Embarisingly-Parallel-for-loops-using-Joblib">Embarisingly Parallel for loops using Joblib<a class="anchor-link" href="#Embarisingly-Parallel-for-loops-using-Joblib">&#182;</a></h1><p>Example from documentation</p>
 
 </div>
 </div>
 </div>
-
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[102]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">sqrt</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 <span class="p">[</span><span class="n">sqrt</span><span class="p">(</span><span class="n">i</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 </pre></div>
 
@@ -11777,7 +11773,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[102]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11792,10 +11788,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[101]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="k">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
 <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">sqrt</span><span class="p">)(</span><span class="n">i</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 
@@ -11807,7 +11803,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[101]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11833,11 +11829,11 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[97]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span>
-<span class="kn">from</span> <span class="nn">joblib</span> <span class="k">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
 <span class="c1"># n_jobs=1 turns off the parallel code for debuging.</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">sleep</span><span class="p">)(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span> 
 </pre></div>
@@ -11852,7 +11848,7 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[Parallel(n_jobs=1)]: Done  49 tasks       | elapsed:    4.8s
+<pre>[Parallel(n_jobs=1)]: Done  49 tasks       | elapsed:    4.9s
 [Parallel(n_jobs=1)]: Done 100 out of 100 | elapsed:   10.0s finished
 </pre>
 </div>
@@ -11864,10 +11860,10 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[98]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">5</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">sleep</span><span class="p">)(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span> 
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">5</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">sleep</span><span class="p">)(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span> 
 </pre></div>
 
 </div>
@@ -11880,9 +11876,8 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[Parallel(n_jobs=2)]: Done  14 tasks      | elapsed:    1.4s
-[Parallel(n_jobs=2)]: Done  68 tasks      | elapsed:    4.1s
-[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    5.7s finished
+<pre>[Parallel(n_jobs=2)]: Done  24 tasks      | elapsed:    1.2s
+[Parallel(n_jobs=2)]: Done 100 out of 100 | elapsed:    5.0s finished
 </pre>
 </div>
 </div>
@@ -11893,10 +11888,10 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[99]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">sleep</span><span class="p">)(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span> 
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">sleep</span><span class="p">)(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span> 
 </pre></div>
 
 </div>
@@ -11909,17 +11904,14 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[Parallel(n_jobs=-1)]: Done   5 tasks      | elapsed:    1.1s
-[Parallel(n_jobs=-1)]: Done  10 tasks      | elapsed:    1.2s
-[Parallel(n_jobs=-1)]: Done  17 tasks      | elapsed:    1.4s
-[Parallel(n_jobs=-1)]: Done  24 tasks      | elapsed:    1.5s
-[Parallel(n_jobs=-1)]: Done  33 tasks      | elapsed:    1.8s
-[Parallel(n_jobs=-1)]: Done  42 tasks      | elapsed:    2.0s
-[Parallel(n_jobs=-1)]: Done  53 tasks      | elapsed:    2.3s
-[Parallel(n_jobs=-1)]: Done  64 tasks      | elapsed:    2.5s
-[Parallel(n_jobs=-1)]: Done  77 tasks      | elapsed:    2.9s
-[Parallel(n_jobs=-1)]: Done  90 tasks      | elapsed:    3.2s
-[Parallel(n_jobs=-1)]: Done 100 out of 100 | elapsed:    3.4s finished
+<pre>[Parallel(n_jobs=-1)]: Batch computation too fast (0.1037s.) Setting batch_size=2.
+[Parallel(n_jobs=-1)]: Done   5 tasks      | elapsed:    0.2s
+[Parallel(n_jobs=-1)]: Done  12 tasks      | elapsed:    0.4s
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:    0.8s
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    1.0s
+[Parallel(n_jobs=-1)]: Done  58 tasks      | elapsed:    1.6s
+[Parallel(n_jobs=-1)]: Done  76 tasks      | elapsed:    2.0s
+[Parallel(n_jobs=-1)]: Done 100 out of 100 | elapsed:    2.6s finished
 </pre>
 </div>
 </div>
@@ -11949,10 +11941,10 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[208]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">test_reuse</span><span class="p">():</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">test_reuse</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Test Reusing a pool of workers &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">parallel</span><span class="p">:</span>
         <span class="n">accumulator</span> <span class="o">=</span> <span class="mf">0.</span>
@@ -11970,10 +11962,10 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[209]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">test_no_reuse</span><span class="p">():</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">test_no_reuse</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Test Showing Parallel overhead by not Reusing a pool of workers&quot;&quot;&quot;</span>
     <span class="n">accumulator</span> <span class="o">=</span> <span class="mf">0.</span>
     <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">0</span>
@@ -11990,10 +11982,10 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[210]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> test_reuse()
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> test_reuse()
 </pre></div>
 
 </div>
@@ -12006,8 +11998,7 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>The slowest run took 4.85 times longer than the fastest. This could mean that an intermediate result is being cached.
-1 loop, best of 3: 1.46 s per loop
+<pre>10 loops, best of 3: 120 ms per loop
 </pre>
 </div>
 </div>
@@ -12018,10 +12009,10 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[211]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> test_no_reuse()
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> test_no_reuse()
 </pre></div>
 
 </div>
@@ -12034,7 +12025,7 @@ If verbose &gt; 50 then message a for every task is returned.</p>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>1 loop, best of 3: 17.9 s per loop
+<pre>1 loop, best of 3: 1.68 s per loop
 </pre>
 </div>
 </div>
@@ -12057,13 +12048,13 @@ You create a generator by using normal brackets "()" instead of square brackets 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[212]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="k">3</span>) is 0]
-<span class="nb">print</span><span class="p">(</span><span class="n">List</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="k">3</span>) is 0]
+<span class="k">print</span><span class="p">(</span><span class="n">List</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">List</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12091,13 +12082,13 @@ You create a generator by using normal brackets "()" instead of square brackets 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[213]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gen</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="k">3</span>) is 0)
-<span class="nb">print</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">gen</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="k">3</span>) is 0)
+<span class="k">print</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">gen</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12110,7 +12101,7 @@ You create a generator by using normal brackets "()" instead of square brackets 
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;generator object &lt;genexpr&gt; at 0x0000000005B31FC0&gt;
+<pre>&lt;generator object &lt;genexpr&gt; at 0x7f9484065fa0&gt;
 0
 9
 36
@@ -12125,18 +12116,18 @@ You create a generator by using normal brackets "()" instead of square brackets 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[214]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Another-iteration&quot;</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">List</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Another-iteration&quot;</span><span class="p">)</span> 
+<span class="k">print</span><span class="p">(</span><span class="n">List</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">List</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
     
 <span class="c1"># Re-iteration of generator does not return any more values</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>    
+<span class="k">print</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>    
 <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">gen</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12155,7 +12146,7 @@ You create a generator by using normal brackets "()" instead of square brackets 
 9
 36
 81
-&lt;generator object &lt;genexpr&gt; at 0x0000000005B31FC0&gt;
+&lt;generator object &lt;genexpr&gt; at 0x7f9484065fa0&gt;
 </pre>
 </div>
 </div>
@@ -12189,10 +12180,10 @@ Or you wanted to normalize spectra (spectra.fits) and save the result to a new f
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[215]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#1/2 Code 1/2 Psudocode for many file example:</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#1/2 Code 1/2 Psudocode for many file example:</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;file1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;file2.txt&quot;</span><span class="p">,</span> <span class="o">....</span><span class="p">,</span> <span class="s2">&quot;fileN.txt&quot;</span><span class="p">]</span>
 <span class="c1">#Serial example</span>
 <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
@@ -12245,24 +12236,6 @@ Or you wanted to normalize spectra (spectra.fits) and save the result to a new f
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-cyan-intense-fg ansi-bold">  File </span><span class="ansi-green-intense-fg ansi-bold">&#34;&lt;ipython-input-215-38e4fa813e5a&gt;&#34;</span><span class="ansi-cyan-intense-fg ansi-bold">, line </span><span class="ansi-green-intense-fg ansi-bold">2</span>
-<span class="ansi-yellow-intense-fg ansi-bold">    filenames = [&#34;file1.txt&#34;, &#34;file2.txt&#34;, ...., &#34;fileN.txt&#34;]</span>
-<span class="ansi-white-intense-fg ansi-bold">                                               ^</span>
-<span class="ansi-red-intense-fg ansi-bold">SyntaxError</span><span class="ansi-red-intense-fg ansi-bold">:</span> invalid syntax
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -12287,10 +12260,12 @@ Or you wanted to normalize spectra (spectra.fits) and save the result to a new f
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[231]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">wav_selector</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">wav_min</span><span class="p">,</span> <span class="n">wav_max</span><span class="p">):</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">wav_selector</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">wav_min</span><span class="p">,</span> <span class="n">wav_max</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    function that returns wavelength and flux withn a giving range</span>
 <span class="sd">    &quot;&quot;&quot;</span>    
@@ -12341,8 +12316,8 @@ Or you wanted to normalize spectra (spectra.fits) and save the result to a new f
         <span class="n">chipmin</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">2149</span><span class="p">)</span>  <span class="c1"># Wavelength start on detector [nm]</span>
         <span class="n">chipmax</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">2157</span><span class="p">)</span>  <span class="c1"># Wavelength end on detector [nm]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unrecognized chip tag.&quot;</span><span class="p">)</span>
-        <span class="n">exit</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Unrecognized chip tag.&quot;</span><span class="p">)</span>
+        <span class="nb">exit</span><span class="p">()</span>
     
     <span class="c1">#select values form the chip  </span>
     <span class="n">wav_chip</span><span class="p">,</span> <span class="n">flux_chip</span> <span class="o">=</span> <span class="n">wav_selector</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">chipmin</span><span class="p">,</span> <span class="n">chipmax</span><span class="p">)</span>
@@ -12360,18 +12335,17 @@ Or you wanted to normalize spectra (spectra.fits) and save the result to a new f
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Serial version of convolution
-The computationally heavy part is the for loop over each wavelenght value</p>
+<h3 id="Serial-version-of-convolution">Serial version of convolution<a class="anchor-link" href="#Serial-version-of-convolution">&#182;</a></h3><p>The computationally heavy part is the for loop over each wavelenght value</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[232]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">convolution_serial</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">chip</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">FWHM_lim</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">convolution_serial</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">chip</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">FWHM_lim</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convolution code adapted from pedros code&quot;&quot;&quot;</span>
     
     <span class="n">wav_chip</span><span class="p">,</span> <span class="n">flux_chip</span> <span class="o">=</span> <span class="n">chip_selector</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">chip</span><span class="p">)</span>
@@ -12386,7 +12360,7 @@ The computationally heavy part is the for loop over each wavelenght value</p>
     <span class="n">wav_extended</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">wav_extended</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
     <span class="n">flux_extended</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">flux_extended</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting the Resolution convolution...&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Starting the Resolution convolution...&quot;</span><span class="p">)</span>
     
     <span class="n">flux_conv_res</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>    
@@ -12400,9 +12374,9 @@ The computationally heavy part is the for loop over each wavelenght value</p>
         <span class="n">flux_conv_res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">IP</span><span class="o">*</span><span class="n">flux_2convolve</span><span class="p">))</span>
         <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flux_conv_res</span><span class="p">)</span><span class="o">%</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wav_chip</span><span class="p">)</span><span class="o">//</span><span class="mi">100</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
             <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resolution Convolution at </span><span class="si">{}%%</span><span class="s2">...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Resolution Convolution at {}</span><span class="si">%%</span><span class="s2">...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
     <span class="n">flux_conv_res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">flux_conv_res</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Done.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     
     <span class="k">if</span><span class="p">(</span><span class="n">plot</span><span class="p">):</span>
         <span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -12420,66 +12394,55 @@ The computationally heavy part is the for loop over each wavelenght value</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Parallel</span> <span class="n">version</span> <span class="n">of</span> <span class="n">convolution</span>
-</pre></div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Parallel-version-of-convolution">Parallel version of convolution<a class="anchor-link" href="#Parallel-version-of-convolution">&#182;</a></h3>
 </div>
 </div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[233]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">convolution_parallel</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">chip</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">FWHM_lim</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Function around bottleneck</span>
+<span class="k">def</span> <span class="nf">convolve</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">wav_extended</span><span class="p">,</span> <span class="n">flux_extended</span><span class="p">,</span> <span class="n">FWHM_lim</span><span class="p">):</span>
+        <span class="c1"># select all values such that they are within the FWHM limits</span>
+        <span class="n">FWHM</span> <span class="o">=</span> <span class="n">wav</span><span class="o">/</span><span class="n">R</span>
+        <span class="n">indexes</span> <span class="o">=</span> <span class="p">[</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wav_extended</span><span class="p">))</span> <span class="k">if</span> <span class="p">((</span><span class="n">wav</span> <span class="o">-</span> <span class="n">FWHM_lim</span><span class="o">*</span><span class="n">FWHM</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">wav_extended</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">wav</span> <span class="o">+</span> <span class="n">FWHM_lim</span><span class="o">*</span><span class="n">FWHM</span><span class="p">))]</span>
+        <span class="n">flux_2convolve</span> <span class="o">=</span> <span class="n">flux_extended</span><span class="p">[</span><span class="n">indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">indexes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">IP</span> <span class="o">=</span> <span class="n">unitary_Gauss</span><span class="p">(</span><span class="n">wav_extended</span><span class="p">[</span><span class="n">indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">indexes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">wav</span><span class="p">,</span> <span class="n">FWHM</span><span class="p">)</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">IP</span><span class="o">*</span><span class="n">flux_2convolve</span><span class="p">)</span> 
+        <span class="n">unitary_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">IP</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">flux_2convolve</span><span class="p">))</span>  <span class="c1"># Effect of convolution onUnitary. For changing number of points</span>
+        <span class="k">return</span> <span class="n">val</span><span class="o">/</span><span class="n">unitary_val</span>
+    
+<span class="k">def</span> <span class="nf">convolution_parallel</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">chip</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">FWHM_lim</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convolution code adapted from pedros code&quot;&quot;&quot;</span>
     
     <span class="n">wav_chip</span><span class="p">,</span> <span class="n">flux_chip</span> <span class="o">=</span> <span class="n">chip_selector</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">chip</span><span class="p">)</span>
     <span class="c1">#we need to calculate the FWHM at this value in order to set the starting point for the convolution</span>
- 
+    
+    <span class="c1">#print(wav_chip)</span>
+    <span class="c1">#print(flux_chip)</span>
     <span class="n">FWHM_min</span> <span class="o">=</span> <span class="n">wav_chip</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">R</span>    <span class="c1">#FWHM at the extremes of vector</span>
     <span class="n">FWHM_max</span> <span class="o">=</span> <span class="n">wav_chip</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">R</span>       
-    
     
     <span class="c1">#wide wavelength bin for the resolution_convolution</span>
     <span class="n">wav_extended</span><span class="p">,</span> <span class="n">flux_extended</span> <span class="o">=</span> <span class="n">wav_selector</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">wav_chip</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">FWHM_lim</span><span class="o">*</span><span class="n">FWHM_min</span><span class="p">,</span> <span class="n">wav_chip</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">FWHM_lim</span><span class="o">*</span><span class="n">FWHM_max</span><span class="p">)</span> 
     <span class="n">wav_extended</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">wav_extended</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
     <span class="n">flux_extended</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">flux_extended</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting the Resolution convolution...&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Starting the Parallel Resolution convolution...&quot;</span><span class="p">)</span>
     
-    <span class="n">flux_conv_res</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>    
-    <span class="k">for</span> <span class="n">wav</span> <span class="ow">in</span> <span class="n">wav_chip</span><span class="p">:</span>
-        <span class="c1"># select all values such that they are within the FWHM limits</span>
-        <span class="n">FWHM</span> <span class="o">=</span> <span class="n">wav</span><span class="o">/</span><span class="n">R</span>
-        <span class="c1">#print(&quot;FWHM of {0} calculated for wavelength {1}&quot;.format(FWHM, wav))</span>
-        <span class="n">indexes</span> <span class="o">=</span> <span class="p">[</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wav_extended</span><span class="p">))</span> <span class="k">if</span> <span class="p">((</span><span class="n">wav</span> <span class="o">-</span> <span class="n">FWHM_lim</span><span class="o">*</span><span class="n">FWHM</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">wav_extended</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">wav</span> <span class="o">+</span> <span class="n">FWHM_lim</span><span class="o">*</span><span class="n">FWHM</span><span class="p">))]</span>
-        <span class="n">flux_2convolve</span> <span class="o">=</span> <span class="n">flux_extended</span><span class="p">[</span><span class="n">indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">indexes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">IP</span> <span class="o">=</span> <span class="n">unitary_Gauss</span><span class="p">(</span><span class="n">wav_extended</span><span class="p">[</span><span class="n">indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">indexes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">wav</span><span class="p">,</span> <span class="n">FWHM</span><span class="p">)</span>
-        <span class="n">flux_conv_res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">IP</span><span class="o">*</span><span class="n">flux_2convolve</span><span class="p">))</span>
-        <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flux_conv_res</span><span class="p">)</span><span class="o">%</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wav_chip</span><span class="p">)</span><span class="o">//</span><span class="mi">100</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-            <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">+</span><span class="mi">1</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resolution Convolution at </span><span class="si">{}%%</span><span class="s2">...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
-    <span class="n">flux_conv_res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">flux_conv_res</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">parallel_result</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">convolve</span><span class="p">)(</span><span class="n">wav</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">wav_extended</span><span class="p">,</span> <span class="n">flux_extended</span><span class="p">,</span><span class="n">FWHM_lim</span><span class="p">)</span> <span class="k">for</span> <span class="n">wav</span> <span class="ow">in</span> <span class="n">wav_chip</span><span class="p">)</span>
+    <span class="n">flux_conv_res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">parallel_result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Done.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     
-    <span class="k">if</span><span class="p">(</span><span class="n">plot</span><span class="p">):</span>
-        <span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">r&quot;wavelength [ $\mu$m ])&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">r&quot;flux [counts] &quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wav_chip</span><span class="p">,</span> <span class="n">flux_chip</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">flux_chip</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Original spectra&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wav_chip</span><span class="p">,</span> <span class="n">flux_conv_res</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">flux_conv_res</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Spectrum observed at and R=</span><span class="si">%d</span><span class="s2"> .&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">R</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
-    <span class="k">return</span> <span class="n">wav_chip</span><span class="p">,</span> <span class="n">flux_conv_res</span>
+
+    <span class="k">return</span> <span class="n">wav_chip</span><span class="p">,</span> <span class="n">flux_conv_res</span> 
 </pre></div>
 
 </div>
@@ -12489,12 +12452,13 @@ The computationally heavy part is the for loop over each wavelenght value</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[234]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load data</span>
-<span class="n">wl</span><span class="p">,</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;Joblib_tapas.txt&quot;</span><span class="p">)</span>  <span class="c1"># 2117-2120 nm</span>
-<span class="c1">#wl, flux = np.loadtxt(&quot;Joblib_tapas.txt&quot;)  # 2145-2160 nm</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Load data</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1">#wl, flux = np.loadtxt(&quot;Joblib_tapas.txt&quot;)  # 2117-2120 nm</span>
+<span class="n">wl</span><span class="p">,</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;Joblib_tapas_large.txt&quot;</span><span class="p">)</span>  <span class="c1"># 2145-2160 nm</span>
 </pre></div>
 
 </div>
@@ -12502,24 +12466,31 @@ The computationally heavy part is the for loop over each wavelenght value</p>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Time a serial convolution</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[235]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;start time&quot;</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;start time&quot;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
-<span class="c1">#convolution_serial(wav, flux, chip, R, FWHM_lim=5.0, plot=True)</span>
+
 <span class="c1"># &quot;Joblib_small&quot;  # &quot;Joblib_large&quot;</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">convolution_serial</span><span class="p">(</span><span class="n">wl</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="s2">&quot;Joblib_small&quot;</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="n">FWHM_lim</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">convolution_serial</span><span class="p">(</span><span class="n">wl</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="s2">&quot;Joblib_large&quot;</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="n">FWHM_lim</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
   
 <span class="n">done</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;end time&quot;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
 <span class="n">elapsed</span> <span class="o">=</span> <span class="n">done</span> <span class="o">-</span> <span class="n">start</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Convolution time = &quot;</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Convolution time = &quot;</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12532,9 +12503,7 @@ The computationally heavy part is the for loop over each wavelenght value</p>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>start time 1464337497.730551
-start time 09:24:57.731568
-Starting the Resolution convolution...
+<pre>Starting the Resolution convolution...
 Resolution Convolution at 1%%...
 Resolution Convolution at 2%%...
 Resolution Convolution at 3%%...
@@ -12635,35 +12604,80 @@ Resolution Convolution at 97%%...
 Resolution Convolution at 98%%...
 Resolution Convolution at 99%%...
 Resolution Convolution at 100%%...
-Resolution Convolution at 101%%...
-Resolution Convolution at 102%%...
-Resolution Convolution at 103%%...
 Done.
 
+(&#39;Convolution time = &#39;, 85.43922686576843)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Time a parallel convolution</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="c1"># &quot;Joblib_small&quot;, &quot;Joblib_large&quot;</span>
+
+<span class="n">x_par</span><span class="p">,</span> <span class="n">y_par</span> <span class="o">=</span> <span class="n">convolution_parallel</span><span class="p">(</span><span class="n">wl</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="s2">&quot;Joblib_large&quot;</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="n">FWHM_lim</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+  
+<span class="n">done</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">elapsed</span> <span class="o">=</span> <span class="n">done</span> <span class="o">-</span> <span class="n">start</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Convolution time = &quot;</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Starting the Parallel Resolution convolution...
 </pre>
 </div>
 </div>
 
 <div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-235-231066b5f404&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
-<span class="ansi-green-fg">      6</span> <span class="ansi-red-intense-fg ansi-bold">#convolution_serial(wav, flux, chip, R, FWHM_lim=5.0, plot=True)</span>
-<span class="ansi-green-fg">      7</span> <span class="ansi-red-intense-fg ansi-bold"># &#34;Joblib_small&#34;  # &#34;Joblib_large&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 8</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>x<span class="ansi-yellow-intense-fg ansi-bold">,</span> y <span class="ansi-yellow-intense-fg ansi-bold">=</span> convolution_serial<span class="ansi-yellow-intense-fg ansi-bold">(</span>wl<span class="ansi-yellow-intense-fg ansi-bold">,</span> flux<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#34;Joblib_small&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">50000</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> FWHM_lim<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">5.0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> plot<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">True</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">      9</span> 
-<span class="ansi-green-fg">     10</span> done <span class="ansi-yellow-intense-fg ansi-bold">=</span> time<span class="ansi-yellow-intense-fg ansi-bold">.</span>time<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=-1)]: Done  88 tasks      | elapsed:    0.3s
+[Parallel(n_jobs=-1)]: Done 2248 tasks      | elapsed:    4.2s
+[Parallel(n_jobs=-1)]: Done 5848 tasks      | elapsed:   10.6s
+[Parallel(n_jobs=-1)]: Done 10888 tasks      | elapsed:   18.7s
+</pre>
+</div>
+</div>
 
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-233-9034be5f0f8d&gt;</span> in <span class="ansi-cyan-fg">convolution_serial</span><span class="ansi-blue-intense-fg ansi-bold">(wav, flux, chip, R, FWHM_lim, plot)</span>
-<span class="ansi-green-fg">     34</span> 
-<span class="ansi-green-fg">     35</span>     <span class="ansi-green-intense-fg ansi-bold">if</span><span class="ansi-yellow-intense-fg ansi-bold">(</span>plot<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">---&gt; 36</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>fig<span class="ansi-yellow-intense-fg ansi-bold">=</span>plt<span class="ansi-yellow-intense-fg ansi-bold">.</span>figure<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">     37</span>         plt<span class="ansi-yellow-intense-fg ansi-bold">.</span>xlabel<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">r&#34;wavelength [ $\mu$m ])&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">     38</span>         plt<span class="ansi-yellow-intense-fg ansi-bold">.</span>ylabel<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">r&#34;flux [counts] &#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Done.
 
-<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;plt&#39; is not defined</pre>
+(&#39;Convolution time = &#39;, 25.072216033935547)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=-1)]: Done 15287 out of 15287 | elapsed:   24.9s finished
+</pre>
 </div>
 </div>
 
@@ -12683,11 +12697,11 @@ Done.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[219]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">heapq</span> <span class="k">import</span> <span class="n">nlargest</span>
-<span class="kn">from</span> <span class="nn">joblib</span> <span class="k">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">heapq</span> <span class="kn">import</span> <span class="n">nlargest</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
 <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">3</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">nlargest</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="s1">&#39;abcde&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> 
 </pre></div>
 
@@ -12703,161 +12717,20 @@ Done.
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">RemoteTraceback</span>                           Traceback (most recent call last)
-<span class="ansi-red-intense-fg ansi-bold">RemoteTraceback</span>: 
-&#34;&#34;&#34;
-Traceback (most recent call last):
-  File &#34;C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py&#34;, line 130, in __call__
-    return self.func(*args, **kwargs)
-  File &#34;C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py&#34;, line 72, in __call__
-    return [func(*args, **kwargs) for func, args, kwargs in self.items]
-  File &#34;C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py&#34;, line 72, in &lt;listcomp&gt;
-    return [func(*args, **kwargs) for func, args, kwargs in self.items]
-  File &#34;C:\Users\Jason\Anaconda3\lib\heapq.py&#34;, line 454, in nlargest
-    it = zip(iterable, count(0,-1))                     # decorate
-TypeError: zip argument #1 must support iteration
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File &#34;C:\Users\Jason\Anaconda3\lib\multiprocessing\pool.py&#34;, line 119, in worker
-    result = (True, func(*args, **kwds))
-  File &#34;C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py&#34;, line 140, in __call__
-    raise TransportableException(text, e_type)
-joblib.my_exceptions.TransportableException: TransportableException
-___________________________________________________________________________
-TypeError                                          Fri May 27 08:50:01 2016
-PID: 6740                 Python 3.4.4: C:\Users\Jason\Anaconda3\python.exe
-...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py in __call__(self=&lt;joblib.parallel.BatchedCalls object&gt;)
-     67     def __init__(self, iterator_slice):
-     68         self.items = list(iterator_slice)
-     69         self._size = len(self.items)
-     70 
-     71     def __call__(self):
----&gt; 72         return [func(*args, **kwargs) for func, args, kwargs in self.items]
-        self.items = [(&lt;function nlargest&gt;, (2, 3), {})]
-     73 
-     74     def __len__(self):
-     75         return self._size
-     76 
-
-...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py in &lt;listcomp&gt;(.0=&lt;list_iterator object&gt;)
-     67     def __init__(self, iterator_slice):
-     68         self.items = list(iterator_slice)
-     69         self._size = len(self.items)
-     70 
-     71     def __call__(self):
----&gt; 72         return [func(*args, **kwargs) for func, args, kwargs in self.items]
-        func = &lt;function nlargest&gt;
-        args = (2, 3)
-        kwargs = {}
-     73 
-     74     def __len__(self):
-     75         return self._size
-     76 
-
-...........................................................................
-C:\Users\Jason\Anaconda3\lib\heapq.py in nlargest(n=2, iterable=3, key=None)
-    449         if n &gt;= size:
-    450             return sorted(iterable, key=key, reverse=True)[:n]
-    451 
-    452     # When key is none, use simpler decoration
-    453     if key is None:
---&gt; 454         it = zip(iterable, count(0,-1))                     # decorate
-        it = undefined
-        iterable = 3
-    455         result = _nlargest(n, it)
-    456         return [r[0] for r in result]                       # undecorate
-    457 
-    458     # General case, slowest method
-
-TypeError: zip argument #1 must support iteration
-___________________________________________________________________________
-&#34;&#34;&#34;
-
-The above exception was the direct cause of the following exception:
-
-<span class="ansi-red-intense-fg ansi-bold">TransportableException</span>                    Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py</span> in <span class="ansi-cyan-fg">retrieve</span><span class="ansi-blue-intense-fg ansi-bold">(self)</span>
-<span class="ansi-green-fg">    726</span>             <span class="ansi-green-intense-fg ansi-bold">try</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">--&gt; 727</span><span class="ansi-yellow-intense-fg ansi-bold">                 </span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_output<span class="ansi-yellow-intense-fg ansi-bold">.</span>extend<span class="ansi-yellow-intense-fg ansi-bold">(</span>job<span class="ansi-yellow-intense-fg ansi-bold">.</span>get<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">    728</span>             <span class="ansi-green-intense-fg ansi-bold">except</span> tuple<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>exceptions<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-green-intense-fg ansi-bold">as</span> exception<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-
-<span class="ansi-green-intense-fg ansi-bold">C:\Users\Jason\Anaconda3\lib\multiprocessing\pool.py</span> in <span class="ansi-cyan-fg">get</span><span class="ansi-blue-intense-fg ansi-bold">(self, timeout)</span>
-<span class="ansi-green-fg">    607</span>         <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">--&gt; 608</span><span class="ansi-yellow-intense-fg ansi-bold">             </span><span class="ansi-green-intense-fg ansi-bold">raise</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_value
-<span class="ansi-green-fg">    609</span> 
-
-<span class="ansi-red-intense-fg ansi-bold">TransportableException</span>: TransportableException
-___________________________________________________________________________
-TypeError                                          Fri May 27 08:50:01 2016
-PID: 6740                 Python 3.4.4: C:\Users\Jason\Anaconda3\python.exe
-...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py in __call__(self=&lt;joblib.parallel.BatchedCalls object&gt;)
-     67     def __init__(self, iterator_slice):
-     68         self.items = list(iterator_slice)
-     69         self._size = len(self.items)
-     70 
-     71     def __call__(self):
----&gt; 72         return [func(*args, **kwargs) for func, args, kwargs in self.items]
-        self.items = [(&lt;function nlargest&gt;, (2, 3), {})]
-     73 
-     74     def __len__(self):
-     75         return self._size
-     76 
-
-...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py in &lt;listcomp&gt;(.0=&lt;list_iterator object&gt;)
-     67     def __init__(self, iterator_slice):
-     68         self.items = list(iterator_slice)
-     69         self._size = len(self.items)
-     70 
-     71     def __call__(self):
----&gt; 72         return [func(*args, **kwargs) for func, args, kwargs in self.items]
-        func = &lt;function nlargest&gt;
-        args = (2, 3)
-        kwargs = {}
-     73 
-     74     def __len__(self):
-     75         return self._size
-     76 
-
-...........................................................................
-C:\Users\Jason\Anaconda3\lib\heapq.py in nlargest(n=2, iterable=3, key=None)
-    449         if n &gt;= size:
-    450             return sorted(iterable, key=key, reverse=True)[:n]
-    451 
-    452     # When key is none, use simpler decoration
-    453     if key is None:
---&gt; 454         it = zip(iterable, count(0,-1))                     # decorate
-        it = undefined
-        iterable = 3
-    455         result = _nlargest(n, it)
-    456         return [r[0] for r in result]                       # undecorate
-    457 
-    458     # General case, slowest method
-
-TypeError: zip argument #1 must support iteration
-___________________________________________________________________________
-
-During handling of the above exception, another exception occurred:
-
 <span class="ansi-red-intense-fg ansi-bold">JoblibTypeError</span>                           Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-219-03aeede4f6e0&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-31-03aeede4f6e0&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
 <span class="ansi-green-fg">      1</span> <span class="ansi-green-intense-fg ansi-bold">from</span> heapq <span class="ansi-green-intense-fg ansi-bold">import</span> nlargest
 <span class="ansi-green-fg">      2</span> <span class="ansi-green-intense-fg ansi-bold">from</span> joblib <span class="ansi-green-intense-fg ansi-bold">import</span> Parallel<span class="ansi-yellow-intense-fg ansi-bold">,</span> delayed
 <span class="ansi-green-intense-fg ansi-bold">----&gt; 3</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>Parallel<span class="ansi-yellow-intense-fg ansi-bold">(</span>n_jobs<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">(</span>delayed<span class="ansi-yellow-intense-fg ansi-bold">(</span>nlargest<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> n<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-green-intense-fg ansi-bold">for</span> n <span class="ansi-green-intense-fg ansi-bold">in</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span>range<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">4</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;abcde&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
-<span class="ansi-green-intense-fg ansi-bold">C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-intense-fg ansi-bold">(self, iterable)</span>
+<span class="ansi-green-intense-fg ansi-bold">/home/jneal/anaconda2/lib/python2.7/site-packages/joblib/parallel.pyc</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-intense-fg ansi-bold">(self, iterable)</span>
 <span class="ansi-green-fg">    808</span>                 <span class="ansi-red-intense-fg ansi-bold"># consumption.</span>
-<span class="ansi-green-fg">    809</span>                 self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_iterating <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-green-intense-fg ansi-bold">False</span>
+<span class="ansi-green-fg">    809</span>                 self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_iterating <span class="ansi-yellow-intense-fg ansi-bold">=</span> False
 <span class="ansi-green-intense-fg ansi-bold">--&gt; 810</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>retrieve<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 <span class="ansi-green-fg">    811</span>             <span class="ansi-red-intense-fg ansi-bold"># Make sure that we get a last message telling us we are done</span>
 <span class="ansi-green-fg">    812</span>             elapsed_time <span class="ansi-yellow-intense-fg ansi-bold">=</span> time<span class="ansi-yellow-intense-fg ansi-bold">.</span>time<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">-</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_start_time
 
-<span class="ansi-green-intense-fg ansi-bold">C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py</span> in <span class="ansi-cyan-fg">retrieve</span><span class="ansi-blue-intense-fg ansi-bold">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">/home/jneal/anaconda2/lib/python2.7/site-packages/joblib/parallel.pyc</span> in <span class="ansi-cyan-fg">retrieve</span><span class="ansi-blue-intense-fg ansi-bold">(self)</span>
 <span class="ansi-green-fg">    755</span>                     <span class="ansi-red-intense-fg ansi-bold"># a working pool as they expect.</span>
 <span class="ansi-green-fg">    756</span>                     self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_initialize_pool<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 <span class="ansi-green-intense-fg ansi-bold">--&gt; 757</span><span class="ansi-yellow-intense-fg ansi-bold">                 </span><span class="ansi-green-intense-fg ansi-bold">raise</span> exception
@@ -12868,36 +12741,38 @@ During handling of the above exception, another exception occurred:
 ___________________________________________________________________________
 Multiprocessing exception:
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\runpy.py in _run_module_as_main(mod_name=&#39;ipykernel.__main__&#39;, alter_argv=1)
-    165         sys.exit(msg)
-    166     main_globals = sys.modules[&#34;__main__&#34;].__dict__
-    167     if alter_argv:
-    168         sys.argv[0] = mod_spec.origin
-    169     return _run_code(code, main_globals, None,
---&gt; 170                      &#34;__main__&#34;, mod_spec)
-        mod_spec = ModuleSpec(name=&#39;ipykernel.__main__&#39;, loader=&lt;_f...da3\\lib\\site-packages\\ipykernel\\__main__.py&#39;)
-    171 
-    172 def run_module(mod_name, init_globals=None,
-    173                run_name=None, alter_sys=False):
-    174     &#34;&#34;&#34;Execute a module&#39;s code without importing it
+/home/jneal/anaconda2/lib/python2.7/runpy.py in _run_module_as_main(mod_name=&#39;ipykernel.__main__&#39;, alter_argv=1)
+    157     pkg_name = mod_name.rpartition(&#39;.&#39;)[0]
+    158     main_globals = sys.modules[&#34;__main__&#34;].__dict__
+    159     if alter_argv:
+    160         sys.argv[0] = fname
+    161     return _run_code(code, main_globals, None,
+--&gt; 162                      &#34;__main__&#34;, fname, loader, pkg_name)
+        fname = &#39;/home/jneal/anaconda2/lib/python2.7/site-packages/ipykernel/__main__.py&#39;
+        loader = &lt;pkgutil.ImpLoader instance&gt;
+        pkg_name = &#39;ipykernel&#39;
+    163 
+    164 def run_module(mod_name, init_globals=None,
+    165                run_name=None, alter_sys=False):
+    166     &#34;&#34;&#34;Execute a module&#39;s code without importing it
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\runpy.py in _run_code(code=&lt;code object &lt;module&gt; at 0x0000000000BF8D20, fil...lib\site-packages\ipykernel\__main__.py&#34;, line 1&gt;, run_globals={&#39;__builtins__&#39;: &lt;module &#39;builtins&#39; (built-in)&gt;, &#39;__cached__&#39;: r&#39;C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\__pycache__\__main__.cpython-34.pyc&#39;, &#39;__doc__&#39;: None, &#39;__file__&#39;: r&#39;C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\__main__.py&#39;, &#39;__loader__&#39;: &lt;_frozen_importlib.SourceFileLoader object&gt;, &#39;__name__&#39;: &#39;__main__&#39;, &#39;__package__&#39;: &#39;ipykernel&#39;, &#39;__spec__&#39;: ModuleSpec(name=&#39;ipykernel.__main__&#39;, loader=&lt;_f...da3\\lib\\site-packages\\ipykernel\\__main__.py&#39;), &#39;app&#39;: &lt;module &#39;ipykernel.kernelapp&#39; from &#39;C:\\Users\\J...a3\\lib\\site-packages\\ipykernel\\kernelapp.py&#39;&gt;}, init_globals=None, mod_name=&#39;__main__&#39;, mod_spec=ModuleSpec(name=&#39;ipykernel.__main__&#39;, loader=&lt;_f...da3\\lib\\site-packages\\ipykernel\\__main__.py&#39;), pkg_name=&#39;ipykernel&#39;, script_name=None)
-     80                        __cached__ = cached,
-     81                        __doc__ = None,
-     82                        __loader__ = loader,
-     83                        __package__ = pkg_name,
-     84                        __spec__ = mod_spec)
----&gt; 85     exec(code, run_globals)
-        code = &lt;code object &lt;module&gt; at 0x0000000000BF8D20, fil...lib\site-packages\ipykernel\__main__.py&#34;, line 1&gt;
-        run_globals = {&#39;__builtins__&#39;: &lt;module &#39;builtins&#39; (built-in)&gt;, &#39;__cached__&#39;: r&#39;C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\__pycache__\__main__.cpython-34.pyc&#39;, &#39;__doc__&#39;: None, &#39;__file__&#39;: r&#39;C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\__main__.py&#39;, &#39;__loader__&#39;: &lt;_frozen_importlib.SourceFileLoader object&gt;, &#39;__name__&#39;: &#39;__main__&#39;, &#39;__package__&#39;: &#39;ipykernel&#39;, &#39;__spec__&#39;: ModuleSpec(name=&#39;ipykernel.__main__&#39;, loader=&lt;_f...da3\\lib\\site-packages\\ipykernel\\__main__.py&#39;), &#39;app&#39;: &lt;module &#39;ipykernel.kernelapp&#39; from &#39;C:\\Users\\J...a3\\lib\\site-packages\\ipykernel\\kernelapp.py&#39;&gt;}
-     86     return run_globals
-     87 
-     88 def _run_module_code(code, init_globals=None,
-     89                     mod_name=None, mod_spec=None,
+/home/jneal/anaconda2/lib/python2.7/runpy.py in _run_code(code=&lt;code object &lt;module&gt; at 0x7f94973d1eb0, file &#34;/...2.7/site-packages/ipykernel/__main__.py&#34;, line 1&gt;, run_globals={&#39;__builtins__&#39;: &lt;module &#39;__builtin__&#39; (built-in)&gt;, &#39;__doc__&#39;: None, &#39;__file__&#39;: &#39;/home/jneal/anaconda2/lib/python2.7/site-packages/ipykernel/__main__.py&#39;, &#39;__loader__&#39;: &lt;pkgutil.ImpLoader instance&gt;, &#39;__name__&#39;: &#39;__main__&#39;, &#39;__package__&#39;: &#39;ipykernel&#39;, &#39;app&#39;: &lt;module &#39;ipykernel.kernelapp&#39; from &#39;/home/jneal/...python2.7/site-packages/ipykernel/kernelapp.pyc&#39;&gt;}, init_globals=None, mod_name=&#39;__main__&#39;, mod_fname=&#39;/home/jneal/anaconda2/lib/python2.7/site-packages/ipykernel/__main__.py&#39;, mod_loader=&lt;pkgutil.ImpLoader instance&gt;, pkg_name=&#39;ipykernel&#39;)
+     67         run_globals.update(init_globals)
+     68     run_globals.update(__name__ = mod_name,
+     69                        __file__ = mod_fname,
+     70                        __loader__ = mod_loader,
+     71                        __package__ = pkg_name)
+---&gt; 72     exec code in run_globals
+        code = &lt;code object &lt;module&gt; at 0x7f94973d1eb0, file &#34;/...2.7/site-packages/ipykernel/__main__.py&#34;, line 1&gt;
+        run_globals = {&#39;__builtins__&#39;: &lt;module &#39;__builtin__&#39; (built-in)&gt;, &#39;__doc__&#39;: None, &#39;__file__&#39;: &#39;/home/jneal/anaconda2/lib/python2.7/site-packages/ipykernel/__main__.py&#39;, &#39;__loader__&#39;: &lt;pkgutil.ImpLoader instance&gt;, &#39;__name__&#39;: &#39;__main__&#39;, &#39;__package__&#39;: &#39;ipykernel&#39;, &#39;app&#39;: &lt;module &#39;ipykernel.kernelapp&#39; from &#39;/home/jneal/...python2.7/site-packages/ipykernel/kernelapp.pyc&#39;&gt;}
+     73     return run_globals
+     74 
+     75 def _run_module_code(code, init_globals=None,
+     76                     mod_name=None, mod_fname=None,
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\__main__.py in &lt;module&gt;()
+/home/jneal/anaconda2/lib/python2.7/site-packages/ipykernel/__main__.py in &lt;module&gt;()
       1 
       2 
 ----&gt; 3 
@@ -12910,7 +12785,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\__main__.py in &lt;module&g
      10 
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\traitlets\config\application.py in launch_instance(cls=&lt;class &#39;ipykernel.kernelapp.IPKernelApp&#39;&gt;, argv=None, **kwargs={})
+/home/jneal/anaconda2/lib/python2.7/site-packages/traitlets/config/application.py in launch_instance(cls=&lt;class &#39;ipykernel.kernelapp.IPKernelApp&#39;&gt;, argv=None, **kwargs={})
     591         
     592         If a global instance already exists, this reinitializes and starts it
     593         &#34;&#34;&#34;
@@ -12924,7 +12799,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\traitlets\config\application.py in la
     600 #-----------------------------------------------------------------------------
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\kernelapp.py in start(self=&lt;ipykernel.kernelapp.IPKernelApp object&gt;)
+/home/jneal/anaconda2/lib/python2.7/site-packages/ipykernel/kernelapp.py in start(self=&lt;ipykernel.kernelapp.IPKernelApp object&gt;)
     437         
     438         if self.poller is not None:
     439             self.poller.start()
@@ -12937,7 +12812,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\kernelapp.py in start(self=
     446 launch_new_instance = IPKernelApp.launch_instance
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\zmq\eventloop\ioloop.py in start(self=&lt;zmq.eventloop.ioloop.ZMQIOLoop object&gt;)
+/home/jneal/anaconda2/lib/python2.7/site-packages/zmq/eventloop/ioloop.py in start(self=&lt;zmq.eventloop.ioloop.ZMQIOLoop object&gt;)
     157             PollIOLoop.configure(ZMQIOLoop)
     158         return PollIOLoop.current(*args, **kwargs)
     159     
@@ -12951,14 +12826,14 @@ C:\Users\Jason\Anaconda3\lib\site-packages\zmq\eventloop\ioloop.py in start(self
     166                 pass
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\tornado\ioloop.py in start(self=&lt;zmq.eventloop.ioloop.ZMQIOLoop object&gt;)
+/home/jneal/anaconda2/lib/python2.7/site-packages/tornado/ioloop.py in start(self=&lt;zmq.eventloop.ioloop.ZMQIOLoop object&gt;)
     878                 self._events.update(event_pairs)
     879                 while self._events:
     880                     fd, events = self._events.popitem()
     881                     try:
     882                         fd_obj, handler_func = self._handlers[fd]
 --&gt; 883                         handler_func(fd_obj, events)
-        handler_func = &lt;function wrap.&lt;locals&gt;.null_wrapper&gt;
+        handler_func = &lt;function null_wrapper&gt;
         fd_obj = &lt;zmq.sugar.socket.Socket object&gt;
         events = 1
     884                     except (OSError, IOError) as e:
@@ -12967,7 +12842,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\tornado\ioloop.py in start(self=&lt;z
     887                             pass
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\tornado\stack_context.py in null_wrapper(*args=(&lt;zmq.sugar.socket.Socket object&gt;, 1), **kwargs={})
+/home/jneal/anaconda2/lib/python2.7/site-packages/tornado/stack_context.py in null_wrapper(*args=(&lt;zmq.sugar.socket.Socket object&gt;, 1), **kwargs={})
     270         # Fast path when there are no active contexts.
     271         def null_wrapper(*args, **kwargs):
     272             try:
@@ -12982,7 +12857,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\tornado\stack_context.py in null_wrap
     279         return null_wrapper
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\zmq\eventloop\zmqstream.py in _handle_events(self=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, fd=&lt;zmq.sugar.socket.Socket object&gt;, events=1)
+/home/jneal/anaconda2/lib/python2.7/site-packages/zmq/eventloop/zmqstream.py in _handle_events(self=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, fd=&lt;zmq.sugar.socket.Socket object&gt;, events=1)
     435             # dispatch events:
     436             if events &amp; IOLoop.ERROR:
     437                 gen_log.error(&#34;got POLLERR event on ZMQStream, which doesn&#39;t make sense&#34;)
@@ -12996,7 +12871,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\zmq\eventloop\zmqstream.py in _handle
     444                 self._handle_send()
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\zmq\eventloop\zmqstream.py in _handle_recv(self=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;)
+/home/jneal/anaconda2/lib/python2.7/site-packages/zmq/eventloop/zmqstream.py in _handle_recv(self=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;)
     467                 gen_log.error(&#34;RECV Error: %s&#34;%zmq.strerror(e.errno))
     468         else:
     469             if self._recv_callback:
@@ -13004,7 +12879,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\zmq\eventloop\zmqstream.py in _handle
     471                 # self._recv_callback = None
 --&gt; 472                 self._run_callback(callback, msg)
         self._run_callback = &lt;bound method ZMQStream._run_callback of &lt;zmq.eventloop.zmqstream.ZMQStream object&gt;&gt;
-        callback = &lt;function wrap.&lt;locals&gt;.null_wrapper&gt;
+        callback = &lt;function null_wrapper&gt;
         msg = [&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;]
     473                 
     474         # self.update_state()
@@ -13012,14 +12887,14 @@ C:\Users\Jason\Anaconda3\lib\site-packages\zmq\eventloop\zmqstream.py in _handle
     476 
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\zmq\eventloop\zmqstream.py in _run_callback(self=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, callback=&lt;function wrap.&lt;locals&gt;.null_wrapper&gt;, *args=([&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;],), **kwargs={})
+/home/jneal/anaconda2/lib/python2.7/site-packages/zmq/eventloop/zmqstream.py in _run_callback(self=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, callback=&lt;function null_wrapper&gt;, *args=([&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;],), **kwargs={})
     409         close our socket.&#34;&#34;&#34;
     410         try:
     411             # Use a NullContext to ensure that all StackContexts are run
     412             # inside our blanket exception handler rather than outside.
     413             with stack_context.NullContext():
 --&gt; 414                 callback(*args, **kwargs)
-        callback = &lt;function wrap.&lt;locals&gt;.null_wrapper&gt;
+        callback = &lt;function null_wrapper&gt;
         args = ([&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;],)
         kwargs = {}
     415         except:
@@ -13028,7 +12903,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\zmq\eventloop\zmqstream.py in _run_ca
     418             # Close the socket on an uncaught exception from a user callback
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\tornado\stack_context.py in null_wrapper(*args=([&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;],), **kwargs={})
+/home/jneal/anaconda2/lib/python2.7/site-packages/tornado/stack_context.py in null_wrapper(*args=([&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;],), **kwargs={})
     270         # Fast path when there are no active contexts.
     271         def null_wrapper(*args, **kwargs):
     272             try:
@@ -13043,7 +12918,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\tornado\stack_context.py in null_wrap
     279         return null_wrapper
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\kernelbase.py in dispatcher(msg=[&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;])
+/home/jneal/anaconda2/lib/python2.7/site-packages/ipykernel/kernelbase.py in dispatcher(msg=[&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;])
     271         if self.control_stream:
     272             self.control_stream.on_recv(self.dispatch_control, copy=False)
     273 
@@ -13057,7 +12932,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\kernelbase.py in dispatcher
     280             s.on_recv(make_dispatcher(s), copy=False)
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\kernelbase.py in dispatch_shell(self=&lt;ipykernel.ipkernel.IPythonKernel object&gt;, stream=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, msg={&#39;buffers&#39;: [], &#39;content&#39;: {&#39;allow_stdin&#39;: True, &#39;code&#39;: &#34;from heapq import nlargest\nfrom joblib import Pa...nlargest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;, &#39;silent&#39;: False, &#39;stop_on_error&#39;: True, &#39;store_history&#39;: True, &#39;user_expressions&#39;: {}}, &#39;header&#39;: {&#39;date&#39;: &#39;2016-05-27T08:50:00.133006&#39;, &#39;msg_id&#39;: &#39;B080DE7D42B54BC784C119389CF39CED&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;session&#39;: &#39;BA37034583694B9296701C2C9B4BFA5B&#39;, &#39;username&#39;: &#39;username&#39;, &#39;version&#39;: &#39;5.0&#39;}, &#39;metadata&#39;: {}, &#39;msg_id&#39;: &#39;B080DE7D42B54BC784C119389CF39CED&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;parent_header&#39;: {}})
+/home/jneal/anaconda2/lib/python2.7/site-packages/ipykernel/kernelbase.py in dispatch_shell(self=&lt;ipykernel.ipkernel.IPythonKernel object&gt;, stream=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, msg={&#39;buffers&#39;: [], &#39;content&#39;: {u&#39;allow_stdin&#39;: True, u&#39;code&#39;: u&#34;from heapq import nlargest\nfrom joblib import...largest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;, u&#39;silent&#39;: False, u&#39;stop_on_error&#39;: True, u&#39;store_history&#39;: True, u&#39;user_expressions&#39;: {}}, &#39;header&#39;: {&#39;date&#39;: &#39;2016-05-27T14:10:02.361629&#39;, u&#39;msg_id&#39;: u&#39;CF7C816B154B4D37B3912A33FB1A01B4&#39;, u&#39;msg_type&#39;: u&#39;execute_request&#39;, u&#39;session&#39;: u&#39;A599ABCE7EC34540BD77D366D6ED8603&#39;, u&#39;username&#39;: u&#39;username&#39;, u&#39;version&#39;: u&#39;5.0&#39;}, &#39;metadata&#39;: {}, &#39;msg_id&#39;: u&#39;CF7C816B154B4D37B3912A33FB1A01B4&#39;, &#39;msg_type&#39;: u&#39;execute_request&#39;, &#39;parent_header&#39;: {}})
     223             self.log.error(&#34;UNKNOWN MESSAGE TYPE: %r&#34;, msg_type)
     224         else:
     225             self.log.debug(&#34;%s: %s&#34;, msg_type, msg)
@@ -13066,15 +12941,15 @@ C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\kernelbase.py in dispatch_s
 --&gt; 228                 handler(stream, idents, msg)
         handler = &lt;bound method IPythonKernel.execute_request of &lt;ipykernel.ipkernel.IPythonKernel object&gt;&gt;
         stream = &lt;zmq.eventloop.zmqstream.ZMQStream object&gt;
-        idents = [b&#39;BA37034583694B9296701C2C9B4BFA5B&#39;]
-        msg = {&#39;buffers&#39;: [], &#39;content&#39;: {&#39;allow_stdin&#39;: True, &#39;code&#39;: &#34;from heapq import nlargest\nfrom joblib import Pa...nlargest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;, &#39;silent&#39;: False, &#39;stop_on_error&#39;: True, &#39;store_history&#39;: True, &#39;user_expressions&#39;: {}}, &#39;header&#39;: {&#39;date&#39;: &#39;2016-05-27T08:50:00.133006&#39;, &#39;msg_id&#39;: &#39;B080DE7D42B54BC784C119389CF39CED&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;session&#39;: &#39;BA37034583694B9296701C2C9B4BFA5B&#39;, &#39;username&#39;: &#39;username&#39;, &#39;version&#39;: &#39;5.0&#39;}, &#39;metadata&#39;: {}, &#39;msg_id&#39;: &#39;B080DE7D42B54BC784C119389CF39CED&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;parent_header&#39;: {}}
+        idents = [&#39;A599ABCE7EC34540BD77D366D6ED8603&#39;]
+        msg = {&#39;buffers&#39;: [], &#39;content&#39;: {u&#39;allow_stdin&#39;: True, u&#39;code&#39;: u&#34;from heapq import nlargest\nfrom joblib import...largest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;, u&#39;silent&#39;: False, u&#39;stop_on_error&#39;: True, u&#39;store_history&#39;: True, u&#39;user_expressions&#39;: {}}, &#39;header&#39;: {&#39;date&#39;: &#39;2016-05-27T14:10:02.361629&#39;, u&#39;msg_id&#39;: u&#39;CF7C816B154B4D37B3912A33FB1A01B4&#39;, u&#39;msg_type&#39;: u&#39;execute_request&#39;, u&#39;session&#39;: u&#39;A599ABCE7EC34540BD77D366D6ED8603&#39;, u&#39;username&#39;: u&#39;username&#39;, u&#39;version&#39;: u&#39;5.0&#39;}, &#39;metadata&#39;: {}, &#39;msg_id&#39;: u&#39;CF7C816B154B4D37B3912A33FB1A01B4&#39;, &#39;msg_type&#39;: u&#39;execute_request&#39;, &#39;parent_header&#39;: {}}
     229             except Exception:
     230                 self.log.error(&#34;Exception in message handler:&#34;, exc_info=True)
     231             finally:
     232                 self.post_handler_hook()
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\kernelbase.py in execute_request(self=&lt;ipykernel.ipkernel.IPythonKernel object&gt;, stream=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, ident=[b&#39;BA37034583694B9296701C2C9B4BFA5B&#39;], parent={&#39;buffers&#39;: [], &#39;content&#39;: {&#39;allow_stdin&#39;: True, &#39;code&#39;: &#34;from heapq import nlargest\nfrom joblib import Pa...nlargest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;, &#39;silent&#39;: False, &#39;stop_on_error&#39;: True, &#39;store_history&#39;: True, &#39;user_expressions&#39;: {}}, &#39;header&#39;: {&#39;date&#39;: &#39;2016-05-27T08:50:00.133006&#39;, &#39;msg_id&#39;: &#39;B080DE7D42B54BC784C119389CF39CED&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;session&#39;: &#39;BA37034583694B9296701C2C9B4BFA5B&#39;, &#39;username&#39;: &#39;username&#39;, &#39;version&#39;: &#39;5.0&#39;}, &#39;metadata&#39;: {}, &#39;msg_id&#39;: &#39;B080DE7D42B54BC784C119389CF39CED&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;parent_header&#39;: {}})
+/home/jneal/anaconda2/lib/python2.7/site-packages/ipykernel/kernelbase.py in execute_request(self=&lt;ipykernel.ipkernel.IPythonKernel object&gt;, stream=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, ident=[&#39;A599ABCE7EC34540BD77D366D6ED8603&#39;], parent={&#39;buffers&#39;: [], &#39;content&#39;: {u&#39;allow_stdin&#39;: True, u&#39;code&#39;: u&#34;from heapq import nlargest\nfrom joblib import...largest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;, u&#39;silent&#39;: False, u&#39;stop_on_error&#39;: True, u&#39;store_history&#39;: True, u&#39;user_expressions&#39;: {}}, &#39;header&#39;: {&#39;date&#39;: &#39;2016-05-27T14:10:02.361629&#39;, u&#39;msg_id&#39;: u&#39;CF7C816B154B4D37B3912A33FB1A01B4&#39;, u&#39;msg_type&#39;: u&#39;execute_request&#39;, u&#39;session&#39;: u&#39;A599ABCE7EC34540BD77D366D6ED8603&#39;, u&#39;username&#39;: u&#39;username&#39;, u&#39;version&#39;: u&#39;5.0&#39;}, &#39;metadata&#39;: {}, &#39;msg_id&#39;: u&#39;CF7C816B154B4D37B3912A33FB1A01B4&#39;, &#39;msg_type&#39;: u&#39;execute_request&#39;, &#39;parent_header&#39;: {}})
     386         if not silent:
     387             self.execution_count += 1
     388             self._publish_execute_input(code, parent, self.execution_count)
@@ -13089,7 +12964,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\kernelbase.py in execute_re
     395         sys.stderr.flush()
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\ipkernel.py in do_execute(self=&lt;ipykernel.ipkernel.IPythonKernel object&gt;, code=&#34;from heapq import nlargest\nfrom joblib import Pa...nlargest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;, silent=False, store_history=True, user_expressions={}, allow_stdin=True)
+/home/jneal/anaconda2/lib/python2.7/site-packages/ipykernel/ipkernel.py in do_execute(self=&lt;ipykernel.ipkernel.IPythonKernel object&gt;, code=u&#34;from heapq import nlargest\nfrom joblib import...largest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;, silent=False, store_history=True, user_expressions={}, allow_stdin=True)
     194 
     195         reply_content = {}
     196         # FIXME: the shell calls the exception handler itself.
@@ -13097,7 +12972,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\ipkernel.py in do_execute(s
     198         try:
 --&gt; 199             shell.run_cell(code, store_history=store_history, silent=silent)
         shell.run_cell = &lt;bound method ZMQInteractiveShell.run_cell of &lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;&gt;
-        code = &#34;from heapq import nlargest\nfrom joblib import Pa...nlargest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;
+        code = u&#34;from heapq import nlargest\nfrom joblib import...largest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;
         store_history = True
         silent = False
     200         except:
@@ -13106,7 +12981,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\ipykernel\ipkernel.py in do_execute(s
     203             # because the run_cell() call above directly fires off exception
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\IPython\core\interactiveshell.py in run_cell(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, raw_cell=&#34;from heapq import nlargest\nfrom joblib import Pa...nlargest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;, store_history=True, silent=False, shell_futures=True)
+/home/jneal/anaconda2/lib/python2.7/site-packages/IPython/core/interactiveshell.py in run_cell(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, raw_cell=u&#34;from heapq import nlargest\nfrom joblib import...largest)(2, n) for n in (range(4), &#39;abcde&#39;, 3)) &#34;, store_history=True, silent=False, shell_futures=True)
    2718                 self.displayhook.exec_result = result
    2719 
    2720                 # Execute the user code
@@ -13114,14 +12989,14 @@ C:\Users\Jason\Anaconda3\lib\site-packages\IPython\core\interactiveshell.py in r
    2722                 self.run_ast_nodes(code_ast.body, cell_name,
 -&gt; 2723                    interactivity=interactivity, compiler=compiler, result=result)
         interactivity = &#39;last_expr&#39;
-        compiler = &lt;IPython.core.compilerop.CachingCompiler object&gt;
+        compiler = &lt;IPython.core.compilerop.CachingCompiler instance&gt;
    2724 
    2725                 # Reset this so later displayed values do not modify the
    2726                 # ExecutionResult
    2727                 self.displayhook.exec_result = None
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\IPython\core\interactiveshell.py in run_ast_nodes(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, nodelist=[&lt;_ast.ImportFrom object&gt;, &lt;_ast.ImportFrom object&gt;, &lt;_ast.Expr object&gt;], cell_name=&#39;&lt;ipython-input-219-03aeede4f6e0&gt;&#39;, interactivity=&#39;last&#39;, compiler=&lt;IPython.core.compilerop.CachingCompiler object&gt;, result=&lt;IPython.core.interactiveshell.ExecutionResult object&gt;)
+/home/jneal/anaconda2/lib/python2.7/site-packages/IPython/core/interactiveshell.py in run_ast_nodes(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, nodelist=[&lt;_ast.ImportFrom object&gt;, &lt;_ast.ImportFrom object&gt;, &lt;_ast.Expr object&gt;], cell_name=&#39;&lt;ipython-input-31-03aeede4f6e0&gt;&#39;, interactivity=&#39;last&#39;, compiler=&lt;IPython.core.compilerop.CachingCompiler instance&gt;, result=&lt;IPython.core.interactiveshell.ExecutionResult object&gt;)
    2826                     return True
    2827 
    2828             for i, node in enumerate(to_run_interactive):
@@ -13129,7 +13004,7 @@ C:\Users\Jason\Anaconda3\lib\site-packages\IPython\core\interactiveshell.py in r
    2830                 code = compiler(mod, cell_name, &#34;single&#34;)
 -&gt; 2831                 if self.run_code(code, result):
         self.run_code = &lt;bound method ZMQInteractiveShell.run_code of &lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;&gt;
-        code = &lt;code object &lt;module&gt; at 0x000000001CBF2A50, file &#34;&lt;ipython-input-219-03aeede4f6e0&gt;&#34;, line 3&gt;
+        code = &lt;code object &lt;module&gt; at 0x7f9451174730, file &#34;&lt;ipython-input-31-03aeede4f6e0&gt;&#34;, line 3&gt;
         result = &lt;IPython.core.interactiveshell.ExecutionResult object&gt;
    2832                     return True
    2833 
@@ -13137,23 +13012,23 @@ C:\Users\Jason\Anaconda3\lib\site-packages\IPython\core\interactiveshell.py in r
    2835             if softspace(sys.stdout, 0):
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\IPython\core\interactiveshell.py in run_code(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, code_obj=&lt;code object &lt;module&gt; at 0x000000001CBF2A50, file &#34;&lt;ipython-input-219-03aeede4f6e0&gt;&#34;, line 3&gt;, result=&lt;IPython.core.interactiveshell.ExecutionResult object&gt;)
+/home/jneal/anaconda2/lib/python2.7/site-packages/IPython/core/interactiveshell.py in run_code(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, code_obj=&lt;code object &lt;module&gt; at 0x7f9451174730, file &#34;&lt;ipython-input-31-03aeede4f6e0&gt;&#34;, line 3&gt;, result=&lt;IPython.core.interactiveshell.ExecutionResult object&gt;)
    2880         outflag = 1  # happens in more places, so it&#39;s easier as default
    2881         try:
    2882             try:
    2883                 self.hooks.pre_run_code_hook()
    2884                 #rprint(&#39;Running code&#39;, repr(code_obj)) # dbg
 -&gt; 2885                 exec(code_obj, self.user_global_ns, self.user_ns)
-        code_obj = &lt;code object &lt;module&gt; at 0x000000001CBF2A50, file &#34;&lt;ipython-input-219-03aeede4f6e0&gt;&#34;, line 3&gt;
-        self.user_global_ns = {&#39;In&#39;: [&#39;&#39;, &#39;from math import sqrt\n[sqrt(i ** 2) for i in range(10)]&#39;, &#39;from math import sqrt\n[sqrt(i ** 2) for i in range(10)]&#39;, &#39;from math import sqrt\n[sqrt(i ** 2) for i in range(10)]&#39;, &#39;from joblib import Parallel, delayed\nParallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(10))&#39;, &#34;get_ipython().magic(&#39;time&#39;)\nParallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(10))&#34;, &#34;get_ipython().magic(&#39;time&#39;)\n[sqrt(i ** 2) for i in range(10)]&#34;, &#34;get_ipython().magic(&#39;time [sqrt(i ** 2) for i in range(10)]&#39;)&#34;, &#34;get_ipython().magic(&#39;time Parallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(10))&#39;)&#34;, &#34;get_ipython().magic(&#39;time [sqrt(i ** 2) for i in range(10)]&#39;)&#34;, &#34;get_ipython().magic(&#39;time Parallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(100))&#39;)&#34;, &#34;get_ipython().magic(&#39;time [sqrt(i ** 2) for i in range(100)]&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit Parallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(100))&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit [sqrt(i ** 2) for i in range(100)]&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit Parallel(n_jobs=-1)(delayed(sqrt)(i ** 2) for i in range(100))&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit [sqrt(i ** 2) for i in range(100)]&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit Parallel(n_jobs=-1)(delayed(sqrt)(i ** 2) for i in range(100))&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit [sqrt(i ** 2) for i in range(10000)]&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit Parallel(n_jobs=-1)(delayed(sqrt)(i ** 2) for i in range(10000))&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit Parallel(n_jobs=-1)(delayed(sqrt)(i ** 2) for i in range(1000000))&#39;)&#34;, ...], &#39;List&#39;: [0, 9, 36, 81], &#39;Memory&#39;: &lt;class &#39;joblib.memory.Memory&#39;&gt;, &#39;Out&#39;: {1: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 2: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 3: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 4: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 5: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 6: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 7: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 8: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 9: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 10: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, ...], ...}, &#39;Parallel&#39;: &lt;class &#39;joblib.parallel.Parallel&#39;&gt;, &#39;_&#39;: [(&#39;a&#39;, [1, 2, 3]), (&#39;b&#39;, array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))], &#39;_1&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;_10&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, ...], &#39;_100&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;_101&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], ...}
-        self.user_ns = {&#39;In&#39;: [&#39;&#39;, &#39;from math import sqrt\n[sqrt(i ** 2) for i in range(10)]&#39;, &#39;from math import sqrt\n[sqrt(i ** 2) for i in range(10)]&#39;, &#39;from math import sqrt\n[sqrt(i ** 2) for i in range(10)]&#39;, &#39;from joblib import Parallel, delayed\nParallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(10))&#39;, &#34;get_ipython().magic(&#39;time&#39;)\nParallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(10))&#34;, &#34;get_ipython().magic(&#39;time&#39;)\n[sqrt(i ** 2) for i in range(10)]&#34;, &#34;get_ipython().magic(&#39;time [sqrt(i ** 2) for i in range(10)]&#39;)&#34;, &#34;get_ipython().magic(&#39;time Parallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(10))&#39;)&#34;, &#34;get_ipython().magic(&#39;time [sqrt(i ** 2) for i in range(10)]&#39;)&#34;, &#34;get_ipython().magic(&#39;time Parallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(100))&#39;)&#34;, &#34;get_ipython().magic(&#39;time [sqrt(i ** 2) for i in range(100)]&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit Parallel(n_jobs=2)(delayed(sqrt)(i ** 2) for i in range(100))&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit [sqrt(i ** 2) for i in range(100)]&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit Parallel(n_jobs=-1)(delayed(sqrt)(i ** 2) for i in range(100))&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit [sqrt(i ** 2) for i in range(100)]&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit Parallel(n_jobs=-1)(delayed(sqrt)(i ** 2) for i in range(100))&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit [sqrt(i ** 2) for i in range(10000)]&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit Parallel(n_jobs=-1)(delayed(sqrt)(i ** 2) for i in range(10000))&#39;)&#34;, &#34;get_ipython().magic(&#39;timeit Parallel(n_jobs=-1)(delayed(sqrt)(i ** 2) for i in range(1000000))&#39;)&#34;, ...], &#39;List&#39;: [0, 9, 36, 81], &#39;Memory&#39;: &lt;class &#39;joblib.memory.Memory&#39;&gt;, &#39;Out&#39;: {1: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 2: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 3: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 4: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 5: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 6: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 7: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 8: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 9: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 10: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, ...], ...}, &#39;Parallel&#39;: &lt;class &#39;joblib.parallel.Parallel&#39;&gt;, &#39;_&#39;: [(&#39;a&#39;, [1, 2, 3]), (&#39;b&#39;, array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))], &#39;_1&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;_10&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, ...], &#39;_100&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;_101&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], ...}
+        code_obj = &lt;code object &lt;module&gt; at 0x7f9451174730, file &#34;&lt;ipython-input-31-03aeede4f6e0&gt;&#34;, line 3&gt;
+        self.user_global_ns = {&#39;In&#39;: [&#39;&#39;, u&#39;from math import sqrt\n[sqrt(i ** 2) for i in range(10)]&#39;, u&#39;from joblib import Parallel, delayed\nParallel...obs=2)(delayed(sqrt)(i ** 2) for i in range(10))&#39;, u&#39;from time import sleep\nfrom joblib import Par...bose=1)(delayed(sleep)(.1) for _ in range(100)) &#39;, u&#39;r = Parallel(n_jobs=2, verbose=5)(delayed(sleep)(.1) for _ in range(100)) &#39;, u&#39;r = Parallel(n_jobs=-1, verbose=10)(delayed(sleep)(.1) for _ in range(100)) &#39;, u&#39;def test_reuse():\n    &#34;&#34;&#34;Test Reusing a pool ...synchronization barrier\n            n_iter += 1&#39;, u&#39;def test_no_reuse():\n    &#34;&#34;&#34;Test Showing Para...  # synchronization barrier\n        n_iter += 1&#39;, u&#34;get_ipython().magic(u&#39;timeit test_reuse()&#39;)&#34;, u&#34;get_ipython().magic(u&#39;timeit test_no_reuse()&#39;)&#34;, u&#39;List = [x ** 2 for x in range(10) if (x%3) is 0]\nprint(List)\nfor val in List:\n    print(val)&#39;, u&#39;gen = (x ** 2 for x in range(10) if (x%3) is 0)\nprint(gen)\nfor val in gen:\n    print(val)&#39;, u&#39;List = [x ** 2 for x in range(10) if (x%3) is 0]\nprint(List)\nfor val in List:\n    print(val)&#39;, u&#39;gen = (x ** 2 for x in range(10) if (x%3) is 0)\nprint(gen)\nfor val in gen:\n    print(val)&#39;, u&#39;print(&#34;Another-iteration&#34;) \nprint(List)\nfor ...nprint(gen)    \nfor val in gen:\n    print(val)&#39;, u&#39;import matplotlib.pyplot as plt\n\ndef wav_sel...chipmax)\n    \n    return [wav_chip, flux_chip]&#39;, u&#39;\ndef convolution_serial(wav, flux, chip, R, F... plt.show() \n    return wav_chip, flux_conv_res&#39;, u&#39;\ndef convolve(wav, R, wav_extended, flux_exte...n&#34;)\n    \n\n    return wav_chip, flux_conv_res &#39;, u&#39;# Load data\nimport numpy as np\nwl, flux = np...= np.loadtxt(&#34;Joblib_tapas.txt&#34;)  # 2145-2160 nm&#39;, u&#39;# Function around bottleneck\ndef convolve(wav...n&#34;)\n    \n\n    return wav_chip, flux_conv_res &#39;, ...], &#39;List&#39;: [0, 9, 36, 81], &#39;Out&#39;: {1: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 2: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]}, &#39;Parallel&#39;: &lt;class &#39;joblib.parallel.Parallel&#39;&gt;, &#39;_&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;_1&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;_2&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;__&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;___&#39;: &#39;&#39;, &#39;__builtin__&#39;: &lt;module &#39;__builtin__&#39; (built-in)&gt;, ...}
+        self.user_ns = {&#39;In&#39;: [&#39;&#39;, u&#39;from math import sqrt\n[sqrt(i ** 2) for i in range(10)]&#39;, u&#39;from joblib import Parallel, delayed\nParallel...obs=2)(delayed(sqrt)(i ** 2) for i in range(10))&#39;, u&#39;from time import sleep\nfrom joblib import Par...bose=1)(delayed(sleep)(.1) for _ in range(100)) &#39;, u&#39;r = Parallel(n_jobs=2, verbose=5)(delayed(sleep)(.1) for _ in range(100)) &#39;, u&#39;r = Parallel(n_jobs=-1, verbose=10)(delayed(sleep)(.1) for _ in range(100)) &#39;, u&#39;def test_reuse():\n    &#34;&#34;&#34;Test Reusing a pool ...synchronization barrier\n            n_iter += 1&#39;, u&#39;def test_no_reuse():\n    &#34;&#34;&#34;Test Showing Para...  # synchronization barrier\n        n_iter += 1&#39;, u&#34;get_ipython().magic(u&#39;timeit test_reuse()&#39;)&#34;, u&#34;get_ipython().magic(u&#39;timeit test_no_reuse()&#39;)&#34;, u&#39;List = [x ** 2 for x in range(10) if (x%3) is 0]\nprint(List)\nfor val in List:\n    print(val)&#39;, u&#39;gen = (x ** 2 for x in range(10) if (x%3) is 0)\nprint(gen)\nfor val in gen:\n    print(val)&#39;, u&#39;List = [x ** 2 for x in range(10) if (x%3) is 0]\nprint(List)\nfor val in List:\n    print(val)&#39;, u&#39;gen = (x ** 2 for x in range(10) if (x%3) is 0)\nprint(gen)\nfor val in gen:\n    print(val)&#39;, u&#39;print(&#34;Another-iteration&#34;) \nprint(List)\nfor ...nprint(gen)    \nfor val in gen:\n    print(val)&#39;, u&#39;import matplotlib.pyplot as plt\n\ndef wav_sel...chipmax)\n    \n    return [wav_chip, flux_chip]&#39;, u&#39;\ndef convolution_serial(wav, flux, chip, R, F... plt.show() \n    return wav_chip, flux_conv_res&#39;, u&#39;\ndef convolve(wav, R, wav_extended, flux_exte...n&#34;)\n    \n\n    return wav_chip, flux_conv_res &#39;, u&#39;# Load data\nimport numpy as np\nwl, flux = np...= np.loadtxt(&#34;Joblib_tapas.txt&#34;)  # 2145-2160 nm&#39;, u&#39;# Function around bottleneck\ndef convolve(wav...n&#34;)\n    \n\n    return wav_chip, flux_conv_res &#39;, ...], &#39;List&#39;: [0, 9, 36, 81], &#39;Out&#39;: {1: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], 2: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]}, &#39;Parallel&#39;: &lt;class &#39;joblib.parallel.Parallel&#39;&gt;, &#39;_&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;_1&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;_2&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;__&#39;: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], &#39;___&#39;: &#39;&#39;, &#39;__builtin__&#39;: &lt;module &#39;__builtin__&#39; (built-in)&gt;, ...}
    2886             finally:
    2887                 # Reset our crash handler in place
    2888                 sys.excepthook = old_excepthook
    2889         except SystemExit as e:
 
 ...........................................................................
-C:\Users\Jason\Documents\PhD\PC_Joblib_parrallelization\&lt;ipython-input-219-03aeede4f6e0&gt; in &lt;module&gt;()
+/home/jneal/Phd/Codes/PC_Joblib_parrallelization/&lt;ipython-input-31-03aeede4f6e0&gt; in &lt;module&gt;()
       1 
       2 
 ----&gt; 3 
@@ -13166,7 +13041,7 @@ C:\Users\Jason\Documents\PhD\PC_Joblib_parrallelization\&lt;ipython-input-219-03
      10 
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py in __call__(self=Parallel(n_jobs=3), iterable=&lt;generator object &lt;genexpr&gt;&gt;)
+/home/jneal/anaconda2/lib/python2.7/site-packages/joblib/parallel.py in __call__(self=Parallel(n_jobs=3), iterable=&lt;generator object &lt;genexpr&gt;&gt;)
     805             if pre_dispatch == &#34;all&#34; or n_jobs == 1:
     806                 # The iterable was consumed all at once by the above for loop.
     807                 # No need to wait for async callbacks to trigger to
@@ -13182,24 +13057,10 @@ C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py in __call__(self=P
 ---------------------------------------------------------------------------
 Sub-process traceback:
 ---------------------------------------------------------------------------
-TypeError                                          Fri May 27 08:50:01 2016
-PID: 6740                 Python 3.4.4: C:\Users\Jason\Anaconda3\python.exe
+TypeError                                          Fri May 27 14:10:02 2016
+PID: 3523                   Python 2.7.11: /home/jneal/anaconda2/bin/python
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py in __call__(self=&lt;joblib.parallel.BatchedCalls object&gt;)
-     67     def __init__(self, iterator_slice):
-     68         self.items = list(iterator_slice)
-     69         self._size = len(self.items)
-     70 
-     71     def __call__(self):
----&gt; 72         return [func(*args, **kwargs) for func, args, kwargs in self.items]
-        self.items = [(&lt;function nlargest&gt;, (2, 3), {})]
-     73 
-     74     def __len__(self):
-     75         return self._size
-     76 
-
-...........................................................................
-C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py in &lt;listcomp&gt;(.0=&lt;list_iterator object&gt;)
+/home/jneal/anaconda2/lib/python2.7/site-packages/joblib/parallel.py in __call__(self=&lt;joblib.parallel.BatchedCalls object&gt;)
      67     def __init__(self, iterator_slice):
      68         self.items = list(iterator_slice)
      69         self._size = len(self.items)
@@ -13209,27 +13070,28 @@ C:\Users\Jason\Anaconda3\lib\site-packages\joblib\parallel.py in &lt;listcomp&gt
         func = &lt;function nlargest&gt;
         args = (2, 3)
         kwargs = {}
+        self.items = [(&lt;function nlargest&gt;, (2, 3), {})]
      73 
      74     def __len__(self):
      75         return self._size
      76 
 
 ...........................................................................
-C:\Users\Jason\Anaconda3\lib\heapq.py in nlargest(n=2, iterable=3, key=None)
-    449         if n &gt;= size:
-    450             return sorted(iterable, key=key, reverse=True)[:n]
-    451 
-    452     # When key is none, use simpler decoration
-    453     if key is None:
---&gt; 454         it = zip(iterable, count(0,-1))                     # decorate
+/home/jneal/anaconda2/lib/python2.7/heapq.py in nlargest(n=2, iterable=3, key=None)
+    458         if n &gt;= size:
+    459             return sorted(iterable, key=key, reverse=True)[:n]
+    460 
+    461     # When key is none, use simpler decoration
+    462     if key is None:
+--&gt; 463         it = izip(iterable, count(0,-1))                    # decorate
         it = undefined
         iterable = 3
-    455         result = _nlargest(n, it)
-    456         return [r[0] for r in result]                       # undecorate
-    457 
-    458     # General case, slowest method
+    464         result = _nlargest(n, it)
+    465         return map(itemgetter(0), result)                   # undecorate
+    466 
+    467     # General case, slowest method
 
-TypeError: zip argument #1 must support iteration
+TypeError: izip argument #1 must support iteration
 ___________________________________________________________________________</pre>
 </div>
 </div>
@@ -13251,13 +13113,13 @@ ___________________________________________________________________________</pre
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="k">import</span> <span class="n">Memory</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Memory</span>
 <span class="n">mem</span> <span class="o">=</span> <span class="n">Memory</span><span class="p">(</span><span class="n">cachedir</span><span class="o">=</span><span class="s1">&#39;/tmp/joblib&#39;</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10001</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">101</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 <span class="n">square</span> <span class="o">=</span> <span class="n">mem</span><span class="o">.</span><span class="n">cache</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">)</span>
 </pre></div>
@@ -13269,10 +13131,76 @@ ___________________________________________________________________________</pre
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> c = square(a) 
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">square</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>________________________________________________________________________________
+[Memory] Calling square...
+square(array([[ 0., ...,  1.],
+       ..., 
+       [ 0., ...,  1.]]))
+___________________________________________________________square - 0.1s, 0.0min
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">square</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>________________________________________________________________________________
+[Memory] Calling square...
+square(array([[   0.,    0.,    0.,    0.,    1.],
+       [   1.,    1.,    1.,    1.,    1.],
+       [  16.,    8.,    4.,    2.,    1.],
+       [  81.,   27.,    9.,    3.,    1.],
+       [ 256.,   64.,   16.,    4.,    1.]]))
+___________________________________________________________square - 0.0s, 0.0min
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">square</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># Does not recomute square(a)</span>
 </pre></div>
 
 </div>
@@ -13282,36 +13210,10 @@ ___________________________________________________________________________</pre
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> d = square(b)
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> e = square(a) # Does not recomute square(a)
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> f = square(b) # Does not recomute square(b)
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">square</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># Does not recomute square(b)</span>
 </pre></div>
 
 </div>
@@ -13343,14 +13245,14 @@ where as .mmap with make a memory map location for parallel process shared acces
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tempfile</span> <span class="k">import</span> <span class="n">mkdtemp</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">mkdtemp</span>
 <span class="n">savedir</span> <span class="o">=</span> <span class="n">mkdtemp</span><span class="p">()</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">savedir</span><span class="p">,</span> <span class="s1">&#39;test.pkl&#39;</span><span class="p">)</span>
-<span class="c1">#filename = os.path.join(savedir, &#39;test.mmap&#39;)</span>
+<span class="c1">#filename = os.path.join(savedir, &#39;test.pkl&#39;)      # Pickle version  </span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">savedir</span><span class="p">,</span> <span class="s1">&#39;test.mmap&#39;</span><span class="p">)</span>      <span class="c1"># Memmap version</span>
 </pre></div>
 
 </div>
@@ -13360,13 +13262,13 @@ where as .mmap with make a memory map location for parallel process shared acces
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Then we create an object to be persisted:</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">to_persist</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))]</span>
-<span class="c1">#to_persist = np.ones(int(1e6))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Then we create an object to be persisted:</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c1">#to_persist = [(&#39;a&#39;, [1, 2, 3]), (&#39;b&#39;, np.arange(10))]</span>
+<span class="n">to_persist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e6</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -13376,10 +13278,10 @@ where as .mmap with make a memory map location for parallel process shared acces
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#which we save into savedir:</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#which we save into savedir:</span>
 <span class="kn">import</span> <span class="nn">joblib</span>
 <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">to_persist</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>  
 </pre></div>
@@ -13388,15 +13290,31 @@ where as .mmap with make a memory map location for parallel process shared acces
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[43]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;/tmp/tmpUFOw5a/test.mmap&#39;, &#39;/tmp/tmpUFOw5a/test.mmap_01.npy&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We can then load the object from the file:</span>
-<span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="c1">#joblib.load(filename, mmap_mode=&#39;r+&#39;)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># We can then load the object from the file:</span>
+<span class="c1">#joblib.load(filename)</span>
+<span class="n">pointer</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mmap_mode</span><span class="o">=</span><span class="s1">&#39;r+&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13409,33 +13327,7 @@ where as .mmap with make a memory map location for parallel process shared acces
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython2"><pre><span></span> 
 </pre></div>
 
 </div>
